@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#quick-guide-to-testing-machine">Quick Guide to Testing Machine</a><ul>
+<li><a href="#about-the-project">About the project</a></li>
+<li><a href="#about-the-software">About the software</a></li>
+<li><a href="#the-egov-testing-machine">The eGov Testing Machine</a></li>
+<li><a href="#software-overview">Software Overview</a><ul>
+<li><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (VMM)</a></li>
+<li><a href="#egov-manuals">eGov Manuals</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#features">Features</a><ul>
+<li><a href="#virtual-machine-management">Virtual Machine Management</a><ul>
+<li><a href="#via-a-dist-file-.tar.gz">Via a dist file (.tar.gz)</a></li>
+</ul></li>
+<li><a href="#building-and-installing-virtual-machine-manager">Building and installing Virtual Machine Manager</a></li>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#creating-a-client">Creating a client</a></li>
+</ul></li>
+<li><a href="#communication">Communication</a><ul>
+<li><a href="#reporting-bugs">Reporting bugs</a></li>
+<li><a href="#getting-involved">Getting involved</a></li>
+<li><a href="#mailing-list">Mailing list</a></li>
+<li><a href="#home-page">Home page</a></li>
+<li><a href="#social-media">Social media</a><ul>
+<li><a href="#twitter">Twitter</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#using-virtual-machine-manager">Using Virtual Machine Manager</a><ul>
+<li><a href="#starting">Starting</a><ul>
+<li><a href="#starting-with-guest-operating-system-visible">Starting with guest operating system visible</a></li>
+<li><a href="#starting-without-showing-guest-operating-system-headless">Starting without showing guest operating system (headless)</a></li>
+</ul></li>
+<li><a href="#checking-status">Checking status</a></li>
+<li><a href="#stopping">Stopping</a></li>
+</ul></li>
+</ul>
+</div>
+<div class="figure">
+<img src="pics/fscrs.png" />
+</div>
+<h1 id="quick-guide-to-testing-machine"><a href="#quick-guide-to-testing-machine">Quick Guide to Testing Machine</a></h1>
+<h2 id="about-the-project"><a href="#about-the-project">About the project</a></h2>
+<p>The Autonomous Province of Bolzano currently offers important digital services (for eg, online applications to start businesses, pay property taxes and initiate e-Payments etc), the number is expected to increase as eGoverment services continue to grow.</p>
+<p>The FSCRS project intends to contribute to the creation and improvement of eGovernment services through an innovative process that verifies and tests functionality. The underlying idea of the project is that the accessibility of digital public services is necessary to increase the innovation potential of the region. .</p>
+<p>The project takes its name from the Free Software Client Reference System, a specific reference system (OS + defined set of software applications) that during testing simulates a user accessing the services.</p>
+<h2 id="about-the-software"><a href="#about-the-software">About the software</a></h2>
+<p>Testingmachine is used to test eGovernment services. The eGovernment services can vary from country to country but generally it grants citizens access to important documents and information. In most EU countries there are additional services like paying property tax that can be done online. Most governments in Europe are leaning in this direction in order to decrease administrative overhead.</p>
+<p>Another challenge to overcome will be testing eGov services on mobile platforms, more specifially automating tests under Android. Good news is this is possible using Selenium. The one major obstacle that we face is getting around the smart card login. So far I am unaware of getting this to work under Android unless you patch the kernel and this is of course no an option. More documentation and research is needed concerning this.</p>
+<h2 id="the-egov-testing-machine"><a href="#the-egov-testing-machine">The eGov Testing Machine</a></h2>
+<p>The expected result is the development of a systematic, auto validation process, currently not available on the market, which allows the testing of eGovernment services without the manual intervention of an operator</p>
+<p>The eGov Testing Machine can be thought of as a virtual group of people, sitting at the computer and using the eGov services and checking if they work properly, allowing the local Public Administration to test eGov services on a daily basis that are being offered to all citizens.</p>
+<h2 id="software-overview"><a href="#software-overview">Software Overview</a></h2>
+<p>The Testing Machine is currently made up by Virtual Machine Manager (tm-vmm) and documentation on how to wite, execute and automate tests of eGov sites in particular but also other softwares.</p>
+<h3 id="virtual-machine-manager-vmm"><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (VMM)</a></h3>
+<p>tm-vmm is made up by bash scripts that let the user manage various virtual machine software in a general way. See the tm-vmm manual for more information.</p>
+<h3 id="egov-manuals"><a href="#egov-manuals">eGov Manuals</a></h3>
+<p>Writing tests of eGov sites is not hard but we believe that some help will still be useful for most people. The manuals and guides provided together with tm-vmm make it possible to test eGov sites automatically and unattended.</p>
+<h1 id="features"><a href="#features">Features</a></h1>
+<h2 id="virtual-machine-management"><a href="#virtual-machine-management">Virtual Machine Management</a></h2>
+<p>With Testing Machine you can:</p>
+<ul>
+<li><p>start/pause/stop virtual machines</p></li>
+<li><p>take screenshots of running virtual machines</p></li>
+<li><p>execute commands in running virtual machines # Installation</p></li>
+</ul>
+<h3 id="via-a-dist-file-.tar.gz"><a href="#via-a-dist-file-.tar.gz">Via a dist file (.tar.gz)</a></h3>
+<p>Coming later</p>
+<h2 id="building-and-installing-virtual-machine-manager"><a href="#building-and-installing-virtual-machine-manager">Building and installing Virtual Machine Manager</a></h2>
+<ul>
+<li>Go to the vvm directory</li>
+</ul>
+<p><code>cd vvm</code></p>
+<ul>
+<li>Configure the software</li>
+</ul>
+<p><code>./configure --prefix &lt;installationdir&gt;</code></p>
+<ul>
+<li>Build the software</li>
+</ul>
+<p><code>make</code></p>
+<ul>
+<li>Install the software</li>
+</ul>
+<p><code>sudo make install</code></p>
+<ul>
+<li>Verify the installation</li>
+</ul>
+<p><code>&lt;installationdir&gt;/bin/tm-vmm --list-clients</code></p>
+<h2 id="setup"><a href="#setup">Setup</a></h2>
+<ul>
+<li>Create the directory $HOME/.testingmachine</li>
+</ul>
+<p><code>mkdir $HOME/.testingmachine</code></p>
+<ul>
+<li>Create tm-vmm.conf in .testingmachine, typically with your favorite editor (emacs?)</li>
+</ul>
+<p><code>emacs ~/.testingmachine/tm-vmm.conf</code></p>
+<p>In this file you can configure settings you want to use as default in your clients. It is perfectly possible to override these settings in your individual client configurations.</p>
+<p>For a list of variables, see section Configuration syntax below.</p>
+<h2 id="creating-a-client"><a href="#creating-a-client">Creating a client</a></h2>
+<p>First of all you need to decide what machine you want to use with your client. In the example below we will assume it is called Debian6.0</p>
+<ul>
+<li><p>Use the command line option:</p>
+<p><code>--create-client-conf</code></p></li>
+</ul>
+<p>Example usage of the option.</p>
+<pre><code>`tm-vmm --create-client-conf  Debian-6.0`</code></pre>
+<ul>
+<li>Copy the public ssh key to the machine, e.g</li>
+</ul>
+<p><code>ssh-copy-id 192.168.1.2</code></p>
+<h1 id="communication"><a href="#communication">Communication</a></h1>
+<h2 id="reporting-bugs"><a href="#reporting-bugs">Reporting bugs</a></h2>
+<p>Try to be as precise as possible when reporting bugs. The more information we get the bigger chance we have of fixing the problem.</p>
+<p>Use the mailing list below to report bugs.</p>
+<h2 id="getting-involved"><a href="#getting-involved">Getting involved</a></h2>
+<p><em>How to join:</em> clone the repo, try it out – join the mailing list :)</p>
+<p>For more information read the developer guidelines.</p>
+<h2 id="mailing-list"><a href="#mailing-list">Mailing list</a></h2>
+<p>We have one mailing list for the project: <code>community@testingmachine.eu</code></p>
+<p>Join this list here: <code>https://lists.testingmachine.eu/cgi-bin/mailman/listinfo/community</code></p>
+<p>If you send emails to this list as a non subscriber chances are it will get list.</p>
+<p>If you want to report a bug: * use a github account and add an issue * subscribe to the mailing and send the report to the list</p>
+<h2 id="home-page"><a href="#home-page">Home page</a></h2>
+<p>https://testingmachine.eu/</p>
+<p>Source code is located here: <code>https://github.com/tis-innovation-park/vmm</code></p>
+<h2 id="social-media"><a href="#social-media">Social media</a></h2>
+<h3 id="twitter"><a href="#twitter">Twitter</a></h3>
+<h1 id="using-virtual-machine-manager"><a href="#using-virtual-machine-manager">Using Virtual Machine Manager</a></h1>
+<p>Regardless of the underlying virtual machine you manage the machine in one way. We provide the most basic uses of tm-vmm here and encourage you to read the complete list of command line options in the last section of the manual.</p>
+<h2 id="starting"><a href="#starting">Starting</a></h2>
+<h3 id="starting-with-guest-operating-system-visible"><a href="#starting-with-guest-operating-system-visible">Starting with guest operating system visible</a></h3>
+<p><code>tm-vmm --start-client &lt;CLIENTNAME&gt;</code></p>
+<p>Example:</p>
+<p><code>tm-vmm --start-client Ubuntu-10</code></p>
+<h3 id="starting-without-showing-guest-operating-system-headless"><a href="#starting-without-showing-guest-operating-system-headless">Starting without showing guest operating system (headless)</a></h3>
+<p><code>tm-vmm --start-client-headless &lt;CLIENTNAME&gt;</code></p>
+<p>Example:</p>
+<p><code>tm-vmm --start-client-headless Ubuntu-10</code></p>
+<h2 id="checking-status"><a href="#checking-status">Checking status</a></h2>
+<p><code>tm-vmm --check-client-status &lt;CLIENTNAME&gt;</code></p>
+<p>Example:</p>
+<p><code>tm-vmm --check-client-status Ubuntu-10</code></p>
+<h2 id="stopping"><a href="#stopping">Stopping</a></h2>
+<p><code>tm-vmm --stop-client &lt;CLIENTNAME&gt;</code></p>
+<p>Example:</p>
+<p><code>tm-vmm --stop-client Ubuntu-10</code></p>
+</body>
+</html>
