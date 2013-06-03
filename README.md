@@ -1,3 +1,5 @@
+![](User-Guide/pics/fscrs.png)
+
 manuals
 =======
 
