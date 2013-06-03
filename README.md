@@ -8,4 +8,5 @@ Manuals generated from source code at:
 Currently generated formats:
 * PDF 
 * HTML
+* MD (markdown)
 
