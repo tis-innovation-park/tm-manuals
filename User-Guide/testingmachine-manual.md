@@ -123,6 +123,9 @@ Source code is located here:
 
 ### Twitter
 
+`https://twitter.com/FSCRS`
+
+Tweet with #fscrs
 
 # Installation 
 
@@ -311,6 +314,71 @@ Selenium is run on the guest so some tweaks are needed to get things
 working, but don't worry we've done almost everything for you.
 
 ## Writing Selenium tests
+
+Selenium tests can be easily created by installing one of the plugins for various browsers.
+To use Selenium in Firefox simply download the plugin which at the time of writing is at V2.0.0
+`release.seleniumhq.org/selenium-ide/2.0.0/selenium-ide-2.0.0.xpi`
+
+Once installed and started Selenium starts recording actions that the user is doing in the browser.
+You can now start clicking through the webpage and Selenium records all actions that can be replayed
+later.
+
+To make sure the correct pages with the correct text is showing you can right click on a certain area
+of the webpage and verify if the text is actually present. This way you can 'test' the page and make sure
+it is behaving as intended.
+
+A simple test could look like the following:
+
+`<tr>
+	<td>open</td>
+	<td>/de/dienste/dienste-az.asp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Abendschulen</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Home › Dienste » Dienste A-Z » Abendschulen <br /> Dienste A-Z Wählen Sie einen Buchstaben: A B C D E F G H I J K L M N O P Q R S T U V W Z <br /> Sie haben gewählt: Abendschulen<br /> Liste der Dienste Abendschule für Erwachsene - Mittelschule (Italienisches Schulamt) <br /> Südtiroler Landesverwaltung <br />Dieser Dienst wird vom Italienischen Schulamt angeboten. Die nachfolgenden Informationen liegen in italienischer Sprache vor. In provincia di Bolzano le singole istituzioni scolastiche hanno la possibilità di istituire corsi di sc... Deutschsprachige Abendoberschule <br /> Südtiroler Landesverwaltung <br />Erwachsene ohne Oberschulabschluss haben die Möglichkeit, im Rahmen einer Abendschule die staatliche Abschlussprüfung (Matura) nachzuholen. Angeboten werden verschiedene Klassen für die Handelsoberschule (HOB), die Gewerbeoberschul... <br /> Schlagwörter 1-2 von 2. <br /> ↑ Nach oben</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Abendschule für Erwachsene - Mittelschule (Italienisches Schulamt)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Abendschule für Erwachsene - Mittelschule (Italienisches Schulamt) <br />Ein Dienst der Südtiroler Landesverwaltung</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>is.ord-scol@scuola.alto-adige.it</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=exact:http://www.provinz.bz.it/italienisches-schulamt/verwaltung/83.asp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Italienisches Bildungsressort</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Autonome Provinz Bozen - Südtirol – Italienisches Schulamt</td>
+	<td></td>
+</tr>`
+
+Please not this is barely scraping the surface of what Selenium can do and is by no means a complete "How-To". Far from it.
+For more information see `http://docs.seleniumhq.org/docs/`
+
+ 
 
 # Miscallaneous other softwares
 
