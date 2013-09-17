@@ -81,49 +81,6 @@ With Testing Machine you can:
 * take screenshots of running virtual machines
 
 * execute commands in running virtual machines
-
-# Communication
-
-## Reporting bugs
-
-Try to be as precise as possible when reporting bugs. The more
-information we get the bigger chance we have of fixing the problem.
-
-Use the mailing list below to report bugs.
-
-## Getting involved
-
-*How to join:* clone the repo, try it out -- join the mailing list :)
-
-For more information read the developer guidelines.
-
-## Mailing list
-
-We have one mailing list for the project:
-`  community@testingmachine.eu  `
-
-Join this list here:
-`https://lists.testingmachine.eu/cgi-bin/mailman/listinfo/community`
-
-If you send emails to this list as a non subscriber chances are it
-will get list. 
-
-If you want to report a bug:
-* use a github account and add an issue
-* subscribe to the mailing and send the report to the list
-
-## Home page
-
-https://testingmachine.eu/
-
-Source code is located here:
-`https://github.com/tis-innovation-park/vmm`
-
-## Social media
-
-### Twitter
-
-
 # Installation 
 
 ##  Software requirement
@@ -143,6 +100,8 @@ Source code is located here:
 ## Supported Virtualization software
 
 * Virtualbox
+
+* Android
 
 * qemu
 
@@ -187,7 +146,7 @@ We're looking into supporting: vmware,
 
 
 
-## Setup 
+# Setup 
 
 * Create the directory $HOME/.testingmachine
 
@@ -208,27 +167,39 @@ For a list of variables, see section Configuration syntax below.
 To create a machine vvm relies on the virtualization software. So if
 you want to manage a Virtualbox machine you (at least for now) create
 it with Virtualbox. For information about how to do this, read the
-chapter "Creating a Virtualbox machine".
+chapter "Creating a Virtualbox machine" or "Creating a Android Virtual
+Device".
 
 
-## Creating a client
+## Preparing for creating a client
 
-First of all you need to decide what machine you want to use with your client. In the example below we will assume it is called Debian6.0
-
+First of all you need to decide what machine you want to use with your
+client. 
 
 * Create a directory for all clients:
 
   `mkdir ~/.testingmachine/clients`
 
-## Create a client configuration
+## Create a VirtualBox client
+
+In the example below we will assume it is called Debian-6.0
+
+### Create a client configuration file
 
 You can create client configuration in two different ways:
 
-* Manually create a configuration file for the client (using a virtual machine):
+* Manually
+* Automatically
+
+#### Create a configuration file manually
+
+* Manually create a configuration file for the client (bound to a virtual machine):
 
       [CLIENT NAME].conf
 
     * Set the variables as you find suitable for your project.
+
+#### Create a configuration file automatically
 
 * Use the command line option:
 
@@ -238,24 +209,75 @@ Example usage of the option.
 
     `tm-vmm --create-client-conf  Debian-6.0`
 
-## Example of a client configuration:
+It is assumed that Debian-6.0 is a VirtualBox image.
 
+### Example of a client configuration:
 
 `   VM_NAME=Debian6.0`
+
 `   VM_TYPE="VirtualBox"`
+
 `   VM_IP_ADDRESS=192.168.1.2`
+
 `   VM_USER=$USER`
+
 `   VM_SUPERUSER=root`
+
 `   SSH_PORT=22`
+
 `   SSH_SHUTDOWN_COMMAND="shutdown -h now"`
 
 For more variables see section Configuration syntax below
 
-* Copy the public ssh key to the machine, e.g
+* Copy your public ssh key to the machine's root account, e.g
 
-  `ssh-copy-id 192.168.1.2`
+  `ssh-copy-id -p 2256 `
 
 
+
+
+
+## Create an Android client
+
+In the example below we will assume it is called Nexus-10
+
+### Create a client configuration file
+
+You can create client configuration in two different ways:
+
+* Manually
+* Automatically
+
+#### Create a configuration file manually
+
+* Manually create a configuration file for the client (bound to a virtual machine):
+
+      [CLIENT NAME].conf
+
+    * Set the variables as you find suitable for your project.
+
+#### Create a configuration file automatically
+
+* Use the command line option:
+
+    `--create-client-conf`
+
+Example usage of the option.
+
+    `tm-vmm --create-client-conf  Nexus-10`
+
+It is assumed that Debian-6.0 and Nexus-10 is the name either a VirtualBox or Android image.
+
+### Example of a client configuration:
+
+
+`VM_NAME="eGov-android-machine"`
+
+`VM_TYPE="Android"`
+
+`ANDROID_SYS=emulator64-arm`
+
+For more variables see section Configuration syntax below
 
 # Using Virtual Machine Manager
 
@@ -403,13 +425,20 @@ settings or change some at your will.
 
 **Note:** *If you’re on a Ubuntu system you might have to add your user to the vboxusers group.*
 
+### Start Virtualbox
+
+In a terminal, type:
+`virtualbox`
+
+In the VM Virtualbox Manager window click "New"
+
 ### Name and operating system
 
 * Name:	    eGov testing machine
 * Type:	    Linux
 * Version:  Ubuntu (64 bit)
 
-![Name and os] (screenshots/name-and-operating-system.png "Name and operating system")
+![Name and os](screenshots/vbox-name-and-operating-system.png "Name and operating system")
 
 
 
@@ -417,33 +446,33 @@ settings or change some at your will.
 
 * 2048 MB
 
-![Memory size](screenshots/memory-size.png)
+![Memory size](screenshots/vbox-memory-size.png)
 
 
 ### Hard drive
 
 * Choose to create a virtual hard drive now
 
-![Hard drive](screenshots/hard-drive.png)
+![Hard drive](screenshots/vbox-hard-drive.png)
 
 ### Hard drive file type
 
 * Choose VDI 
 
-![Hard drive file type](screenshots/hard-drive-file-type.png)
+![Hard drive file type](screenshots/vbox-hard-drive-file-type.png)
 
 ### Storage on physical hard drive
 
 * Choose Dynamically allocated
 
-![Hard drive file type](screenshots/storage-on-physical-hard-disk.png)
+![Hard drive file type](screenshots/vbox-storage-on-physical-hard-disk.png)
 
 
 ### File location and size
 
 * 8 GB should be enough
 
-![File location and size](screenshots/file-location-and-size.png)
+![File location and size](screenshots/vbox-file-location-and-size.png)
 
 
 Your disk has now been created. Before starting it we need to do some additional settings.
@@ -471,7 +500,7 @@ The following settings should be applied to Adapter 1.
  the host computer. See http://www.virtualbox.org/manual/ Chapter 6
  for additional information on bridged networking.*
 
-![Network](screenshots/network-1.png)
+![Network](screenshots/vbox-network-1.png)
 
 
 
@@ -492,7 +521,7 @@ Add a new rule by clicking the + sign. Enter
 * **Guest IP**:
 * **Guest Port**: 22
 
-![Network](screenshots/network-port-forward.png)
+![Network](screenshots/vbox-network-port-forward.png)
 
 #### USB
 Make sure USB is enabled if you plan to use a smart card reader or another USB device 
@@ -514,12 +543,12 @@ Click Settings and choose storage.
 
 Add the downloaded iso image to the virtual machine as a CD-ROM by clicking the Empty icon (image missing) under Controller: IDE and then click on the disc icon right of the text CD/DVD Drive: . 
 
-![Storage](screenshots/storage-pre.png)
+![Storage](screenshots/vbox-storage-pre.png)
 
 
 Choose a virtual CD/DVD disk file ... and point out the downloaded iso image (e.g. ubuntu-12.10-desktop-amd64.iso).
 
-![Storage](screenshots/storage-post.png)
+![Storage](screenshots/vbox-storage-post.png)
 
 Click Start
 
@@ -532,7 +561,6 @@ To upgrade your system you need to:
 * Click on the Software updater icon to your left
 * Click install now
 * Enter password
-
 
 
 #### Installing necessary tools in your virtual machine
@@ -552,6 +580,28 @@ sudo apt-get install openssh-server
 
 Log in to your virtual machine as the user you created during installation.
 
+
+
+##### Setting up a new user
+
+VMM puts no restrictions or requirements on the name of the user in
+your virtual machine. The user name “vmm” is given here as an
+example and will be used in all manual text below.
+
+Log in as the user you created during the Ubuntu installation.
+
+Open up a user management tool by pressing the dasher (logo missing) and type user accounts. 
+
+* Press the unlock symbol and type in the password of the first user you created. 
+
+* Press the + symbol. You will now see a new window, called Create new account, in which you should fill in:
+
+**Account Type**:	      Standard
+**Full name**:		      Virtual Machine Manager
+**Username**		      vmm
+
+* Click on Enable password and type in a password.
+
 ##### Setting up the root account
 
 * Permit root to login via the ssh server.
@@ -565,29 +615,61 @@ Log in to your virtual machine as the user you created during installation.
 
 `sudo /etc/init.d/ssh restart ` 
 
+* Add the ssh key of your host user to vmm account
+
+  `ssh-copy-id "-p 2256 vmm@localhost"`
+
+* Test your user acoount
+
+ `ssh -p 2256 vmm@localhost whoami`
+
 * Add the ssh key of your host user to the root account
 
+  `ssh -p 2256 vmm@localhost -t "sudo mkdir /root/.ssh && sudo cp /home/vmm/.ssh/authorized_keys /root/.ssh/"`
+
+* Test your root acoount
+
+ `ssh -p 2256 root@localhost whoami`
+
+We assume here that you're using port 2256 for ssh and that your user
+is called vmm. Change it accordingly if not. 
+**Note**: Make sure that your port (-p 2256) and host arguments (vmm@localhost) are enclosed between the same parenthesises.
 
 
-TODO: what IP does the client/guest get??
+## Creating a Android Virtual Device 
 
-##### Setting up a new user
+Basically you should follow the normal procedure, as described on the
+Android Developer pages manual: http://developer.android.com/tools/devices/index.html.
 
-VMM puts no restrictions or requirements on the name of the user in your virtual machine. The user name “egov-tester” is given here as an example and will be used in all manual text below.
+We do, however, provide a guide below to make this easier. You can
+choose to use our settings or change some at your will. In this guide
+we will setup a Nexus 7 device.
 
-Log in as the user you created during the Ubuntu installation.
+### Start Android Virtual Device Manager
 
-Open up a user management tool by pressing the dasher (logo missing) and type user accounts. 
+In a terminal, type:
 
-* Press the unlock symbol and type in the password of the first user you created. 
+`android avd`
 
-* Press the + symbol. You will now see a new window, called Create new account, in which you should fill in:
+In the Android Virtual Device Manager window click "New"
 
-**Account Type**:	      Standard
-**Full name**:		E-goc tester
-**Username**		      egov
 
-* Click on Enable password and type in a password.
+### Create new Android Virtual Device (AVD)
+
+* Name:	    eGov-android-machine
+* Device:   Nexus 7
+* Target:   Android 4.2
+
+You can keep the default values for all other settings.
+
+![Create new Android Virtual Device](screenshots/android-create-new.png "Name and operating system")
+
+
+
+
+
+
+
 
 # Example use:
 
@@ -600,7 +682,7 @@ Open up a user management tool by pressing the dasher (logo missing) and type us
 /opt/bin/tm-vmm --client-exec         Ubuntu-12.10 "pkcs15-tool -L"
 
 
-# Communication
+# Project Communication
 
 ## Reporting bugs
 
@@ -630,6 +712,10 @@ If you want to report a bug:
 * use a github account and add an issue
 * subscribe to the mailing and send the report to the list
 
+## Blog
+
+https://testingmachine.eu/blog
+
 ## Home page
 
 https://testingmachine.eu/
@@ -640,6 +726,8 @@ Source code is located here:
 ## Social media
 
 ### Twitter
+
+https://twitter.com/FSCRS
 
 
 # Testing Machine VMM configuration
@@ -656,7 +744,7 @@ The syntax for setting a variable is the same as in bash scrips (no coincidence!
 
 `VM_STARTUP_TIMEOUT=10` - the time to wait for a virtual machine to start up before considering it to be 'dead'.
 
-`VM_STOP_TIMEOUT=20` - the time to wait for a virtual machine to start up before taking more drastic actions to take down the machine. Ultimately VVM will take down a machine with a `kill`.
+`VM_STOP_TIMEOUT=20` - the time to wait for a virtual machine to start up before taking more drastic actions to take down the machine. Ultimately VMM will take down a machine with a `kill`.
 
 `SSH=ssh` - the SSH program to use
 
@@ -684,17 +772,17 @@ The syntax for setting a variable is the same as in bash scrips (no coincidence!
 
 `--list-clients` - lists all configured clients
 
-`--start-clients client` - starts client 
+`--start-client CLIENT` - starts client name CLIENT
 
 `--start-client-headless CLIENT_NAME` - Start client called CLIENT_NAME as headless (no screen)
 
-`--stop-clients client` - stops client
+`--stop-clients CLIENT` - stops client named CLIENT
 
 `--list-running-clients` - Lists all clients currently running
 
-`--check-client-ssh` - Checks if ssh is up on client
+`--check-client-ssh CLIENT` - Checks if ssh is up on CLIENT
 
-`--check-client-status` - Checks if clients is up and running
+`--check-client-status CLIENT` - Checks if clients is up and running
 
 `--client-exec CLIENT cmd` - Execeute cmd on client
 
@@ -717,19 +805,12 @@ The syntax for setting a variable is the same as in bash scrips (no coincidence!
 
 `  --list-machines` - lists all machines known to VVM
 
-`  --start-machine client` - starts machine 
-
+`  --start-machine MACHINE` - starts machine named MACHINE
 
 ` --start-machine-headless VM_NAME` - Start machine called VM_NAME as headless (no screen)
 
-`  --stop-machine client`  - stops machine
+` --stop-machine MACHINE`  - stops machine named MACHINE
 
-`--check-machine`
-
-
-` --stop-client CLIENT_NAME` - Stop client called CLIENT_NAME
-
-
-` --stop-machine VM_NAME` - Stop machine called VM_NAME
+` --check-machine MACHINE` - checks status on machine named MACHINE
 
 

@@ -70,7 +70,7 @@ together with tm-vmm make it possible to test eGov sites automatically
 and unattended.
 
 
-# Communication
+# Project Communication
 
 ## Reporting bugs
 
@@ -100,6 +100,10 @@ If you want to report a bug:
 * use a github account and add an issue
 * subscribe to the mailing and send the report to the list
 
+## Blog
+
+https://testingmachine.eu/blog
+
 ## Home page
 
 https://testingmachine.eu/
@@ -110,6 +114,8 @@ Source code is located here:
 ## Social media
 
 ### Twitter
+
+https://twitter.com/FSCRS
 
 
 # Using git
