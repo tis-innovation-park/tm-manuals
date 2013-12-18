@@ -9,7 +9,7 @@
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; }
+table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 code > span.kw { color: #007020; font-weight: bold; }
@@ -34,14 +34,14 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#about-the-software">About the software</a></li>
 <li><a href="#the-egov-testing-machine">The eGov Testing Machine</a></li>
 <li><a href="#software-overview">Software Overview</a><ul>
-<li><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (VMM)</a></li>
+<li><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (vmm)</a></li>
 <li><a href="#egov-manuals">eGov Manuals</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#features">Features</a><ul>
 <li><a href="#virtual-machine-management">Virtual Machine Management</a></li>
-<li><a href="#software-requirement">Software requirement</a><ul>
-<li><a href="#additional-requirements-for-vmm-developers">Additional requirements for VMM developers</a></li>
+<li><a href="#software-requirements">Software requirements</a><ul>
+<li><a href="#additional-requirements-for-vmm-developers">Additional requirements for vmm developers</a></li>
 </ul></li>
 <li><a href="#supported-virtualization-software">Supported Virtualization software</a></li>
 <li><a href="#downloading-virtual-machine-manager">Downloading Virtual Machine Manager</a><ul>
@@ -49,8 +49,6 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#via-a-dist-file-.tar.gz">Via a dist file (.tar.gz)</a></li>
 </ul></li>
 <li><a href="#building-and-installing-virtual-machine-manager">Building and installing Virtual Machine Manager</a></li>
-</ul></li>
-<li><a href="#setup">Setup</a><ul>
 <li><a href="#creating-a-machine">Creating a machine</a></li>
 <li><a href="#preparing-for-creating-a-client">Preparing for creating a client</a></li>
 <li><a href="#create-a-virtualbox-client">Create a VirtualBox client</a><ul>
@@ -79,7 +77,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#gnu-xnee">GNU Xnee</a></li>
 <li><a href="#wmctrl">wmctrl</a></li>
 </ul></li>
-<li><a href="#launching-tests-using-vmm">Launching tests using VMM</a><ul>
+<li><a href="#launching-tests-using-vmm">Launching tests using vmm</a><ul>
 <li><a href="#using-crontab">Using crontab</a></li>
 <li><a href="#using-jenkins">Using Jenkins</a></li>
 </ul></li>
@@ -117,7 +115,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#twitter">Twitter</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#testing-machine-vmm-configuration">Testing Machine VMM configuration</a><ul>
+<li><a href="#testing-machine-vmm-configuration">Testing Machine vmm configuration</a><ul>
 <li><a href="#configuration-file-syntax">Configuration file syntax</a><ul>
 <li><a href="#variables">Variables</a></li>
 </ul></li>
@@ -125,6 +123,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#tm-vmm-command-line-options">tm-vmm Command line options</a><ul>
 <li><a href="#client-options">Client options</a></li>
 <li><a href="#machine-options">Machine options</a></li>
+<li><a href="#other">Other</a></li>
 </ul></li>
 </ul>
 </div>
@@ -144,7 +143,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>The eGov Testing Machine can be thought of as a virtual group of people, sitting at the computer and using the eGov services and checking if they work properly, allowing the local Public Administration to test eGov services on a daily basis that are being offered to all citizens.</p>
 <h2 id="software-overview"><a href="#software-overview">Software Overview</a></h2>
 <p>The Testing Machine is currently made up by Virtual Machine Manager (tm-vmm) and documentation on how to wite, execute and automate tests of eGov sites in particular but also other softwares.</p>
-<h3 id="virtual-machine-manager-vmm"><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (VMM)</a></h3>
+<h3 id="virtual-machine-manager-vmm"><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (vmm)</a></h3>
 <p>tm-vmm is made up by bash scripts that let the user manage various virtual machine software in a general way. See the tm-vmm manual for more information.</p>
 <h3 id="egov-manuals"><a href="#egov-manuals">eGov Manuals</a></h3>
 <p>Writing tests of eGov sites is not hard but we believe that some help will still be useful for most people. The manuals and guides provided together with tm-vmm make it possible to test eGov sites automatically and unattended.</p>
@@ -152,28 +151,27 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h2 id="virtual-machine-management"><a href="#virtual-machine-management">Virtual Machine Management</a></h2>
 <p>With Testing Machine you can:</p>
 <ul>
+<li><p>manage VirtualBox, Android, and QEMU virtual machines with a unified interface</p></li>
 <li><p>start/pause/stop virtual machines</p></li>
 <li><p>take screenshots of running virtual machines</p></li>
 <li><p>execute commands in running virtual machines # Installation</p></li>
 </ul>
-<h2 id="software-requirement"><a href="#software-requirement">Software requirement</a></h2>
-<ul>
-<li><p>ssh (client)</p></li>
-<li><p>at least one virtualization software (see list of supported softwares below)</p></li>
-<li><p>bash</p></li>
-</ul>
-<h3 id="additional-requirements-for-vmm-developers"><a href="#additional-requirements-for-vmm-developers">Additional requirements for VMM developers</a></h3>
+<h2 id="software-requirements"><a href="#software-requirements">Software requirements</a></h2>
+<p>The bash, ssh and expect programs will be needed, but they are included in most popular Linux distributions out-of-the-box.</p>
+<p>You will also want at least one virtualization software (see list of supported softwares below). The wmctrl package is optional, but with allow vmm to maximize the window of your VirtualBox client systems.</p>
+<p>In order to use vmm to run <a href="the%20Testing%20Machine%20examples">https://github.com/tis-innovation-park/tm-examples</a>, you will want a Java SDK and Ant. For Debian, run <code>apt-get install default-jdk</code>. For Ubuntu, run <code>sudo apt-get install default-jdk ant</code>. For Fedora, run <code>yum install java-1.7.0-openjdk ant</code>.</p>
+<h3 id="additional-requirements-for-vmm-developers"><a href="#additional-requirements-for-vmm-developers">Additional requirements for vmm developers</a></h3>
 <ul>
 <li><p>pandoc - to generate documentation</p></li>
 <li><p>pdflatex - to generate documentation</p></li>
 </ul>
 <h2 id="supported-virtualization-software"><a href="#supported-virtualization-software">Supported Virtualization software</a></h2>
 <ul>
-<li><p>Virtualbox</p></li>
-<li><p>Android</p></li>
+<li><p>Virtualbox (install it using <code>apt-get install linux-headers-$(uname -r|sed   's,[^-]*-[^-]*-,,') virtualbox</code> on Debian-based systems (such as Debian and Ubuntu), or grab it from <a href="the%20VirtualBox%20Linux%20Downloads%20section">https://www.virtualbox.org/wiki/Linux_Downloads</a>)</p></li>
+<li><p>Android (install it by downloading <a href="the%20Android%20Development%20Toolkit%20Bundle">https://developer.android.com/sdk/index.html</a>, extract the ZIP archive, modify ~/.bashrc to include <code>export   ANDROID_ADT_PATH=&lt;Path to ADT bundle directory&gt;</code>, and update your environment by executing <code>source ~/.bashrc</code>)</p></li>
 <li><p>qemu</p></li>
 </ul>
-<p>We’re looking into supporting: vmware,</p>
+<p>We might support vmware in the future.</p>
 <h2 id="downloading-virtual-machine-manager"><a href="#downloading-virtual-machine-manager">Downloading Virtual Machine Manager</a></h2>
 <h3 id="via-git"><a href="#via-git">Via git</a></h3>
 <ul>
@@ -184,13 +182,13 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Coming later</p>
 <h2 id="building-and-installing-virtual-machine-manager"><a href="#building-and-installing-virtual-machine-manager">Building and installing Virtual Machine Manager</a></h2>
 <ul>
-<li>Go to the vvm directory</li>
+<li>Go to the vmm directory</li>
 </ul>
-<p><code>cd vvm</code></p>
+<p><code>cd vmm</code></p>
 <ul>
-<li>Configure the software</li>
+<li>Configure the software (you can use –prefix=<installationdir> to specify a non-default installation directory)</li>
 </ul>
-<p><code>./configure --prefix &lt;installationdir&gt;</code></p>
+<p><code>./configure</code></p>
 <ul>
 <li>Build the software</li>
 </ul>
@@ -200,10 +198,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul>
 <p><code>sudo make install</code></p>
 <ul>
-<li>Verify the installation</li>
+<li>Verify the installation (you might need to prepend the path to tm-vmm, if the installation directory is not in your $PATH)</li>
 </ul>
-<p><code>&lt;installationdir&gt;/bin/tm-vmm --list-clients</code></p>
-<h1 id="setup"><a href="#setup">Setup</a></h1>
+<p><code>tm-vmm --list-clients</code> # Setup</p>
 <ul>
 <li>Create the directory $HOME/.testingmachine</li>
 </ul>
@@ -215,7 +212,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>In this file you can configure settings you want to use as default in your clients. It is perfectly possible to override these settings in your individual client configurations.</p>
 <p>For a list of variables, see section Configuration syntax below.</p>
 <h2 id="creating-a-machine"><a href="#creating-a-machine">Creating a machine</a></h2>
-<p>To create a machine vvm relies on the virtualization software. So if you want to manage a Virtualbox machine you (at least for now) create it with Virtualbox. For information about how to do this, read the chapter “Creating a Virtualbox machine” or “Creating a Android Virtual Device”.</p>
+<p>To create a machine vmm relies on the virtualization software. So if you want to manage a Virtualbox machine you (at least for now) create it with Virtualbox. For information about how to do this, read the chapter “Creating a Virtualbox machine” or “Creating an Android Virtual Device”.</p>
 <h2 id="preparing-for-creating-a-client"><a href="#preparing-for-creating-a-client">Preparing for creating a client</a></h2>
 <p>First of all you need to decide what machine you want to use with your client.</p>
 <ul>
@@ -233,7 +230,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h4 id="create-a-configuration-file-manually"><a href="#create-a-configuration-file-manually">Create a configuration file manually</a></h4>
 <ul>
 <li><p>Manually create a configuration file for the client (bound to a virtual machine):</p>
-<p>[CLIENT NAME].conf</p>
+<p>[CLIENT_NAME].conf</p>
 <ul>
 <li>Set the variables as you find suitable for your project.</li>
 </ul></li>
@@ -246,6 +243,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Example usage of the option.</p>
 <pre><code>`tm-vmm --create-client-conf  Debian-6.0`</code></pre>
 <p>It is assumed that Debian-6.0 is a VirtualBox image.</p>
+<p><strong>Note:</strong> <code>--create-client-conf</code> will set the default value for the guest username to `whoami`. If your virtual machine uses some other username, you should modify the client configuration after running this command.</p>
 <h3 id="example-of-a-client-configuration"><a href="#example-of-a-client-configuration">Example of a client configuration:</a></h3>
 <p><code>VM_NAME=Debian6.0</code></p>
 <p><code>VM_TYPE=&quot;VirtualBox&quot;</code></p>
@@ -270,7 +268,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h4 id="create-a-configuration-file-manually-1"><a href="#create-a-configuration-file-manually-1">Create a configuration file manually</a></h4>
 <ul>
 <li><p>Manually create a configuration file for the client (bound to a virtual machine):</p>
-<p>[CLIENT NAME].conf</p>
+<p>[CLIENT_NAME].conf</p>
 <ul>
 <li>Set the variables as you find suitable for your project.</li>
 </ul></li>
@@ -283,6 +281,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Example usage of the option.</p>
 <pre><code>`tm-vmm --create-client-conf  Nexus-10`</code></pre>
 <p>It is assumed that Debian-6.0 and Nexus-10 is the name either a VirtualBox or Android image.</p>
+<p><strong>Note:</strong> <code>--create-client-conf</code> will set the default value for the guest username to `whoami`. If your virtual machine uses some other username, you should modify the client configuration after running this command.</p>
 <h3 id="example-of-a-client-configuration-1"><a href="#example-of-a-client-configuration-1">Example of a client configuration:</a></h3>
 <p><code>VM_NAME=&quot;eGov-android-machine&quot;</code></p>
 <p><code>VM_TYPE=&quot;Android&quot;</code></p>
@@ -292,19 +291,19 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Regardless of the underlying virtual machine you manage the machine in one way. We provide the most basic uses of tm-vmm here and encourage you to read the complete list of command line options in the last section of the manual.</p>
 <h2 id="starting"><a href="#starting">Starting</a></h2>
 <h3 id="starting-with-guest-operating-system-visible"><a href="#starting-with-guest-operating-system-visible">Starting with guest operating system visible</a></h3>
-<p><code>tm-vmm --start-client &lt;CLIENTNAME&gt;</code></p>
+<p><code>tm-vmm --start-client &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --start-client Ubuntu-10</code></p>
 <h3 id="starting-without-showing-guest-operating-system-headless"><a href="#starting-without-showing-guest-operating-system-headless">Starting without showing guest operating system (headless)</a></h3>
-<p><code>tm-vmm --start-client-headless &lt;CLIENTNAME&gt;</code></p>
+<p><code>tm-vmm --start-client-headless &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --start-client-headless Ubuntu-10</code></p>
 <h2 id="checking-status"><a href="#checking-status">Checking status</a></h2>
-<p><code>tm-vmm --check-client-status &lt;CLIENTNAME&gt;</code></p>
+<p><code>tm-vmm --check-client-status &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --check-client-status Ubuntu-10</code></p>
 <h2 id="stopping"><a href="#stopping">Stopping</a></h2>
-<p><code>tm-vmm --stop-client &lt;CLIENTNAME&gt;</code></p>
+<p><code>tm-vmm --stop-client &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --stop-client Ubuntu-10</code></p>
 <h1 id="selenium"><a href="#selenium">Selenium</a></h1>
@@ -323,7 +322,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h2 id="wmctrl"><a href="#wmctrl">wmctrl</a></h2>
 <p>The package “wmctrl” is used to resize windows.</p>
 <p><code>sudo apt-get install wmctrl</code></p>
-<h1 id="launching-tests-using-vmm"><a href="#launching-tests-using-vmm">Launching tests using VMM</a></h1>
+<h1 id="launching-tests-using-vmm"><a href="#launching-tests-using-vmm">Launching tests using vmm</a></h1>
 <h2 id="using-crontab"><a href="#using-crontab">Using crontab</a></h2>
 <h2 id="using-jenkins"><a href="#using-jenkins">Using Jenkins</a></h2>
 <h1 id="testing-egov-sites"><a href="#testing-egov-sites">Testing eGov sites</a></h1>
@@ -351,7 +350,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <h1 id="creating-virtual-machines"><a href="#creating-virtual-machines">Creating virtual machines</a></h1>
 <h2 id="creating-a-virtualbox-machine-with-ubuntu-12.10"><a href="#creating-a-virtualbox-machine-with-ubuntu-12.10">Creating a VirtualBox machine with Ubuntu 12.10</a></h2>
 <p>Basically you should follow the normal procedure, as described in the VirtualBox manual, on how to create a new virtual machine. However we provide a guide below to make this easier. You can choose to use our settings or change some at your will.</p>
-<p><strong>Note:</strong> <em>If you’re on a Ubuntu system you might have to add your user to the vboxusers group.</em></p>
+<p><strong>Note:</strong> <em>If you’re on a Ubuntu system you might have to add your user to the vboxusers group. This can done like this: <code>sudo adduser `whoami` vboxusers</code>.</em></p>
 <h3 id="start-virtualbox"><a href="#start-virtualbox">Start Virtualbox</a></h3>
 <p>In a terminal, type: <code>virtualbox</code></p>
 <p>In the VM Virtualbox Manager window click “New”</p>
@@ -400,6 +399,9 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <img src="screenshots/vbox-file-location-and-size.png" alt="File location and size" /><p class="caption">File location and size</p>
 </div>
 <p>Your disk has now been created. Before starting it we need to do some additional settings.</p>
+<div class="figure">
+<img src="screenshots/vbox-network-1.png" alt="Network" /><p class="caption">Network</p>
+</div>
 <h3 id="network"><a href="#network">Network</a></h3>
 <h4 id="setup-the-network-card"><a href="#setup-the-network-card">Setup the network card</a></h4>
 <ul>
@@ -418,9 +420,6 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <li><strong>Cable connected</strong>: should be checked</li>
 </ul>
 <p><em>This gives your virtual machine an IP address on the same subnet as the host computer. See http://www.virtualbox.org/manual/ Chapter 6 for additional information on bridged networking.</em></p>
-<div class="figure">
-<img src="screenshots/vbox-network-1.png" alt="Network" /><p class="caption">Network</p>
-</div>
 <h5 id="allowing-ssh-logins-to-your-virtual-machine"><a href="#allowing-ssh-logins-to-your-virtual-machine">Allowing SSH logins to your virtual machine</a></h5>
 <p>Open up the VirtualBox Manager</p>
 <p>Choose your Virtual machine and click Settings</p>
@@ -438,7 +437,8 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <img src="screenshots/vbox-network-port-forward.png" alt="Network" /><p class="caption">Network</p>
 </div>
 <h4 id="usb"><a href="#usb">USB</a></h4>
-<p>Make sure USB is enabled if you plan to use a smart card reader or another USB device</p>
+<p>Make sure USB is enabled if you plan to use a smart card reader or another USB device.</p>
+<p>You might encounter an error saying “Failed to access the USB subsystem”. In that case, you probably need to add yourself to the vboxusers group. On Ubuntu, this can done like this: <code>sudo adduser `whoami` vboxusers</code>.</p>
 <p>To use a smart card reader in your virtual machine you have to do the following:</p>
 <ul>
 <li>Attach the smart card reader to your computer</li>
@@ -462,10 +462,12 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <h4 id="upgrading-your-installation"><a href="#upgrading-your-installation">Upgrading your installation</a></h4>
 <p>To upgrade your system you need to:</p>
 <ul>
-<li>Click on the Software updater icon to your left</li>
+<li>Click on the Software updater icon to your left (it may take up to a few minutes before the icon appears)</li>
 <li>Click install now</li>
 <li>Enter password</li>
 </ul>
+<p><em>Note:</em> If the Software Updater icon is not available in the sidebar, you can press the “Win/Super” key and type “Software Updater” to start it.</p>
+<p>Ubuntu might require a restart when the update process is finished.</p>
 <h4 id="installing-necessary-tools-in-your-virtual-machine"><a href="#installing-necessary-tools-in-your-virtual-machine">Installing necessary tools in your virtual machine</a></h4>
 <p>The following tools need to be installed on your virtual machine</p>
 <ul>
@@ -476,7 +478,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <h4 id="setting-up-users-on-the-virtual-machine"><a href="#setting-up-users-on-the-virtual-machine">Setting up users on the virtual machine</a></h4>
 <p>Log in to your virtual machine as the user you created during installation.</p>
 <h5 id="setting-up-a-new-user"><a href="#setting-up-a-new-user">Setting up a new user</a></h5>
-<p>VMM puts no restrictions or requirements on the name of the user in your virtual machine. The user name “vmm” is given here as an example and will be used in all manual text below.</p>
+<p>vmm puts no restrictions or requirements on the name of the user in your virtual machine. The user name “vmm” is given here as an example and will be used in all manual text below.</p>
 <p>Log in as the user you created during the Ubuntu installation.</p>
 <p>Open up a user management tool by pressing the dasher (logo missing) and type user accounts.</p>
 <ul>
@@ -512,6 +514,10 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 </ul>
 <p><code>ssh -p 2256 vmm@localhost -t &quot;sudo mkdir /root/.ssh &amp;&amp; sudo cp /home/vmm/.ssh/authorized_keys /root/.ssh/&quot;</code></p>
 <ul>
+<li>Disable password (for user vmm) when using sudo</li>
+</ul>
+<p><code>ssh -p 2257 root@localhost &quot;echo \&quot;vmm ALL=(ALL) NOPASSWD:ALL\&quot; &gt;&gt; /etc/sudoers&quot;</code></p>
+<ul>
 <li>Test your root acoount</li>
 </ul>
 <p><code>ssh -p 2256 root@localhost whoami</code></p>
@@ -520,6 +526,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <p>Basically you should follow the normal procedure, as described on the Android Developer pages manual: http://developer.android.com/tools/devices/index.html.</p>
 <p>We do, however, provide a guide below to make this easier. You can choose to use our settings or change some at your will. In this guide we will setup a Nexus 7 device.</p>
 <h3 id="start-android-virtual-device-manager"><a href="#start-android-virtual-device-manager">Start Android Virtual Device Manager</a></h3>
+<p>First, you need to make sure that the ANDROID and ANDROID_ADT_PATH environment variables are set, so that vmm can find the Android application utilities.</p>
 <p>In a terminal, type:</p>
 <p><code>android avd</code></p>
 <p>In the Android Virtual Device Manager window click “New”</p>
@@ -548,7 +555,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <h2 id="mailing-list"><a href="#mailing-list">Mailing list</a></h2>
 <p>We have one mailing list for the project: <code>community@testingmachine.eu</code></p>
 <p>Join this list here: <code>https://lists.testingmachine.eu/cgi-bin/mailman/listinfo/community</code></p>
-<p>If you send emails to this list as a non subscriber chances are it will get list.</p>
+<p>If you send emails to this list as a non subscriber chances are it will get lost.</p>
 <p>If you want to report a bug: * use a github account and add an issue * subscribe to the mailing and send the report to the list</p>
 <h2 id="blog"><a href="#blog">Blog</a></h2>
 <p>https://testingmachine.eu/blog</p>
@@ -558,14 +565,14 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <h2 id="social-media"><a href="#social-media">Social media</a></h2>
 <h3 id="twitter"><a href="#twitter">Twitter</a></h3>
 <p>https://twitter.com/FSCRS</p>
-<h1 id="testing-machine-vmm-configuration"><a href="#testing-machine-vmm-configuration">Testing Machine VMM configuration</a></h1>
+<h1 id="testing-machine-vmm-configuration"><a href="#testing-machine-vmm-configuration">Testing Machine vmm configuration</a></h1>
 <h2 id="configuration-file-syntax"><a href="#configuration-file-syntax">Configuration file syntax</a></h2>
 <p>The syntax for setting a variable is the same as in bash scrips (no coincidence!). Basically you write:</p>
 <p><code>VARIABLE=VALUE</code></p>
 <h3 id="variables"><a href="#variables">Variables</a></h3>
-<p><code>LOG_FILE_DIR=/tmp/vmm/log</code> - sets the log file base directory to /tmp/vmm/log. This means that all logs can be found here.</p>
+<p><code>LOG_FILE_DIR=/tmp/tm-vmm/log</code> - sets the log file base directory to /tmp/vmm/log. This means that all logs can be found here.</p>
 <p><code>VM_STARTUP_TIMEOUT=10</code> - the time to wait for a virtual machine to start up before considering it to be ‘dead’.</p>
-<p><code>VM_STOP_TIMEOUT=20</code> - the time to wait for a virtual machine to start up before taking more drastic actions to take down the machine. Ultimately VMM will take down a machine with a <code>kill</code>.</p>
+<p><code>VM_STOP_TIMEOUT=20</code> - the time to wait for a virtual machine to start up before taking more drastic actions to take down the machine. Ultimately vmm will take down a machine with a <code>kill</code>.</p>
 <p><code>SSH=ssh</code> - the SSH program to use</p>
 <p><code>SSH_TEST_OPTIONS=&quot; -o connectTimeout=3&quot;</code> - the options to pass to the SSH program (see SSH variable above) when testing of the machine is up (or not).</p>
 <p><code>VM_NAME=&quot;Debian6.0&quot;</code> - the name of the machine to use in this client. It is important that your Virtualization software can find this machine.</p>
@@ -574,29 +581,52 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <p><code>VM_USER=$USER</code> - the user you want to use when accessing the virtual machine</p>
 <p><code>VM_SUPERUSER=root</code> - the name of the super user/administrator account, typically used to reboot the machine</p>
 <p><code>SSH_PORT=22</code> - the port where the SSH server is running on the client</p>
-<p><code>SSH_SHUTDOWN_COMMAND=&quot;shutdown -h now&quot;</code> - VVM will do its very best to shut down a machine as gracefully as possible. One way to do this is to try to shut it down using SSH. The command in this variable will be used to do that.</p>
+<p><code>SSH_SHUTDOWN_COMMAND=&quot;shutdown -h now&quot;</code> - vmm will do its very best to shut down a machine as gracefully as possible. One way to do this is to try to shut it down using SSH. The command in this variable will be used to do that.</p>
+<p><code>ANDROID_ADT_PATH=/opt/adt-bundle-linux-x86_64-20130219</code> - Path to Android SDK installation. vmm will use this to find the commands adb and android.</p>
+<p><code>ANDROID=~/example/bin/android</code> - Specify the android command. This overrides the android command as found using the environment variable ANDROID_ADT_PATH.</p>
+<p><code>ADB=~/example/bin/adb</code> - Specify the adb command. This overrides the android command as found using the environment variable ANDROID_ADT_PATH.</p>
 <h1 id="tm-vmm-command-line-options"><a href="#tm-vmm-command-line-options">tm-vmm Command line options</a></h1>
 <h2 id="client-options"><a href="#client-options">Client options</a></h2>
-<p><code>--list-clients</code> - lists all configured clients</p>
-<p><code>--start-client CLIENT</code> - starts client name CLIENT</p>
-<p><code>--start-client-headless CLIENT_NAME</code> - Start client called CLIENT_NAME as headless (no screen)</p>
-<p><code>--stop-clients CLIENT</code> - stops client named CLIENT</p>
+<p><code>--list-clients</code> - Lists all configured clients</p>
+<p><code>--start-client CLIENT_NAME</code> - Starts the client called CLIENT_NAME</p>
+<p><code>--start-client-headless CLIENT_NAME</code> - Starts the client called CLIENT_NAME as headless (no screen)</p>
+<p><code>--stop-clients CLIENT_NAME</code> - Stops the client called CLIENT_NAME</p>
 <p><code>--list-running-clients</code> - Lists all clients currently running</p>
-<p><code>--check-client-ssh CLIENT</code> - Checks if ssh is up on CLIENT</p>
-<p><code>--check-client-status CLIENT</code> - Checks if clients is up and running</p>
-<p><code>--client-exec CLIENT cmd</code> - Execeute cmd on client</p>
-<p><code>--client-exec-as-root</code> - Execeute cmd on client as root</p>
-<p><code>--client-x11 CLIENT</code> - Checks if X11 is up and running on CLIENT</p>
-<p><code>--client-screenshot CLIENT</code> - Take a screenshot on CLIENT (not 100% ready)</p>
-<p><code>--print-client CLIENT</code> - Print the configuration for CLIENT</p>
-<p><code>--wait-for-ssh CLIENT</code> - Wait until ssh is up and running on CLIENT</p>
-<p><code>--open-ssh CLIENT</code> - Open an interactive shell (using ssh) on CLIENT</p>
-<p><code>--check-client-online CLIENT</code> - Check if CLIENT can ping the outside world</p>
+<p><code>--check-client-ssh CLIENT_NAME</code> - Checks if ssh is up on the client called CLIENT_NAME</p>
+<p><code>--check-client-status CLIENT_NAME</code> - Checks if the client called CLIENT_NAME is up and running</p>
+<p><code>--client-exec CLIENT_NAME COMMAND</code> - Execeutes the COMMAND on the client called CLIENT_NAME</p>
+<p><code>--client-exec-as-root CLIENT_NAME COMMAND</code> - Execeutes the COMMAND on the client called CLIENT_NAME as root</p>
+<p><code>--client-x11 CLIENT_NAME</code> - Checks if X11 is up and running on the client called CLIENT_NAME</p>
+<p><code>--client-screenshot CLIENT_NAME</code> - Takes a screenshot on the client called CLIENT_NAME (not 100% ready)</p>
+<p><code>--print-client CLIENT_NAME</code> - Prints the configuration for the client called CLIENT_NAME</p>
+<p><code>--wait-for-ssh CLIENT_NAME TIMEOUT&lt;optional&gt;</code> - Waits until ssh is up and running on the client called CLIENT_NAME (Default TIMEOUT value is 120 if it is not set by the user)</p>
+<p><code>--wait-for-client CLIENT_NAME TIMEOUT&lt;optional&gt;</code> - (Needs updating) (Default TIMEOUT value is 120 if it is not set by the user)</p>
+<p><code>--open-ssh CLIENT_NAME TIMEOUT&lt;optional&gt;</code> - Opens an interactive shell (using ssh) on the client called CLIENT_NAME (Default TIMEOUT value is 120 if it is not set by the user)</p>
+<p><code>--check-client-online CLIENT_NAME</code> - Checks if the client called CLIENT_NAME can ping the outside world</p>
+<p><code>--pause-client CLIENT_NAME</code> - Pauses the running client</p>
+<p><code>--resume-client CLIENT_NAME</code> - Resumes the paused client</p>
+<p><code>--client-exec-fail CLIENT_NAME COMMAND</code> - Executes the COMMAND on the client called CLIENT_NAME and turns it off upon failure</p>
+<p><code>--create-client-conf CLIENT_NAME</code> - Creates the configuration for the client called CLIENT_NAME automatically</p>
+<p><code>--snapshot-client CLIENT_NAME</code> - Takes a screen shot on the client called CLIENT_NAME (not implemented for VirtualBox)</p>
+<p><code>--client-copy-file SRC DST</code> - Copies a file from a client to a host or from a host to a client; a host resource could be “<sub>/myhostfile“, and a client resource could be”[CLIENT_NAME]:</sub>/myclientfile”</p>
+<p><code>--is-client-up CLIENT_NAME</code> - Checks whether the client called CLIENT_NAME is running</p>
+<p><code>--unlock-screen CLIENT_NAME</code> - Unlocks the screen of the virtual machine (Android only for now)</p>
+<p><code>--install-app CLIENT_NAME PACKAGE</code> - Installs application PACKAGE on the client called CLIENT_NAME (APK, DEB or RPM); APK files are not yet transferred to the client</p>
+<p><code>--uninstall-app CLIENT_NAME APP_NAME</code> - Uninstalls application APP_NAME on the client called CLIENT_NAME (APK, DEB or RPM)</p>
+<p><code>--print-client-settings CLIENT_NAME</code> - Prints the path to the client’s configuration</p>
+<p><code>--get-client-os CLIENT_NAME</code> - Displays the operating system of the client called CLIENT_NAME</p>
+<p><code>--for-clients-run SCRIPT [CLIENT_NAMES]</code> - For each client, starts it, run the script, and stop it. CLIENT_NAMES is a semi-colon-seprated list of client names. If CLIENT_NAMES is left out, all clients will be used. The following variables will be set in the script: CLIENT_NAME, CLIENT_TYPE (“vbox” or “android”), CLIENT_STARTED (0 means yes), CLIENT_UP (0 means yes), and CLIENT_SSH_UP (0 means yes).</p>
 <h2 id="machine-options"><a href="#machine-options">Machine options</a></h2>
-<p><code>--list-machines</code> - lists all machines known to VVM</p>
-<p><code>--start-machine MACHINE</code> - starts machine named MACHINE</p>
-<p><code>--start-machine-headless VM_NAME</code> - Start machine called VM_NAME as headless (no screen)</p>
-<p><code>--stop-machine MACHINE</code> - stops machine named MACHINE</p>
-<p><code>--check-machine MACHINE</code> - checks status on machine named MACHINE</p>
+<p><code>--list-machines</code> - Lists all machines known to vmm</p>
+<p><code>--start-machine MACHINE_NAME</code> - Starts machine named MACHINE</p>
+<p><code>--start-machine-headless MACHINE_NAME</code> - Starts machine called VM_NAME as headless (no screen)</p>
+<p><code>--stop-machine MACHINE_NAME</code> - Stops machine named MACHINE</p>
+<p><code>--check-machine-status MACHINE_NAME</code> - Checks status on the machine called MACHINE_NAME</p>
+<p><code>--list-running-machines</code> - Lists all machines currently running</p>
+<p><code>--pause-machine MACHINE_NAME</code> - Pauses the running virtual machine</p>
+<p><code>--resume-machine MACHINE_NAME</code> - Resumes the paused virtual machine</p>
+<h2 id="other"><a href="#other">Other</a></h2>
+<p><code>--version</code> - Checks the current version of the tm-vmm</p>
+<p><code>--import-appliance APPLIANCE</code> - Imports an OVA file into VirtualBox (OVF, Open Virtualization Format, is a cross-platform standard for packaging ready-made virtual machines that can be imported to virtualizers, while OVA is the name of a tar archive file with the OVF directory inside)</p>
 </body>
 </html>

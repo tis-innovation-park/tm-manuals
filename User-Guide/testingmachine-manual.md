@@ -56,7 +56,7 @@ The Testing Machine is currently made up by Virtual Machine Manager
 (tm-vmm) and documentation on how to wite, execute and automate tests
 of eGov sites in particular but also other softwares.
 
-### Virtual Machine Manager (VMM)
+### Virtual Machine Manager (vmm)
 
 tm-vmm is made up by bash scripts that let the user manage various
 virtual machine software in a general way. See the tm-vmm manual for
@@ -76,6 +76,8 @@ and unattended.
 
 With Testing Machine you can:
 
+* manage VirtualBox, Android, and QEMU virtual machines with a unified interface
+
 * start/pause/stop virtual machines
 
 * take screenshots of running virtual machines
@@ -83,15 +85,22 @@ With Testing Machine you can:
 * execute commands in running virtual machines
 # Installation 
 
-##  Software requirement
- 
-* ssh (client)
+##  Software requirements
 
-* at least one virtualization software (see list of supported softwares below)
+The bash, ssh and expect programs will be needed, but they are included in most
+popular Linux distributions out-of-the-box.
 
-* bash
+You will also want at least one virtualization software (see list of supported
+softwares below). The wmctrl package is optional, but with allow vmm to maximize
+the window of your VirtualBox client systems.
 
-### Additional requirements for VMM developers
+In order to use vmm to run
+[https://github.com/tis-innovation-park/tm-examples](the Testing Machine
+examples), you will want a Java SDK and Ant. For Debian, run `apt-get install
+default-jdk`. For Ubuntu, run `sudo apt-get install default-jdk ant`. For
+Fedora, run `yum install java-1.7.0-openjdk ant`.
+
+### Additional requirements for vmm developers
 
 * pandoc - to generate documentation
 
@@ -99,13 +108,20 @@ With Testing Machine you can:
 
 ## Supported Virtualization software
 
-* Virtualbox
+* Virtualbox (install it using `apt-get install linux-headers-$(uname -r|sed
+  's,[^-]*-[^-]*-,,') virtualbox` on Debian-based systems (such as Debian and
+  Ubuntu), or grab it from [https://www.virtualbox.org/wiki/Linux_Downloads](the
+  VirtualBox Linux Downloads section))
 
-* Android
+* Android (install it by downloading
+  [https://developer.android.com/sdk/index.html](the Android Development Toolkit
+  Bundle), extract the ZIP archive, modify ~/.bashrc to include `export
+  ANDROID_ADT_PATH=<Path to ADT bundle directory>`, and update your environment
+  by executing `source ~/.bashrc`)
 
 * qemu
 
-We're looking into supporting: vmware, 
+We might support vmware in the future.
 
 ## Downloading Virtual Machine Manager
 
@@ -121,13 +137,14 @@ We're looking into supporting: vmware,
 
 ## Building and installing Virtual Machine Manager
 
-* Go to the vvm directory
+* Go to the vmm directory
 
-  `cd vvm`
+  `cd vmm`
 
-* Configure the software
+* Configure the software (you can use --prefix=<installationdir> to
+  specify a non-default installation directory)
 
-  `./configure --prefix <installationdir>`
+  `./configure`
 
 * Build the software
 
@@ -137,15 +154,10 @@ We're looking into supporting: vmware,
 
   `sudo make install`
 
-* Verify the installation
+* Verify the installation (you might need to prepend the path to tm-vmm, if the
+  installation directory is not in your $PATH)
 
-  `<installationdir>/bin/tm-vmm --list-clients`
-
-
-
-
-
-
+  `tm-vmm --list-clients`
 # Setup 
 
 * Create the directory $HOME/.testingmachine
@@ -164,11 +176,11 @@ For a list of variables, see section Configuration syntax below.
 
 ## Creating a machine
 
-To create a machine vvm relies on the virtualization software. So if
+To create a machine vmm relies on the virtualization software. So if
 you want to manage a Virtualbox machine you (at least for now) create
 it with Virtualbox. For information about how to do this, read the
-chapter "Creating a Virtualbox machine" or "Creating a Android Virtual
-Device".
+chapter "Creating a Virtualbox machine" or "Creating an Android
+Virtual Device".
 
 
 ## Preparing for creating a client
@@ -195,7 +207,7 @@ You can create client configuration in two different ways:
 
 * Manually create a configuration file for the client (bound to a virtual machine):
 
-      [CLIENT NAME].conf
+      [CLIENT_NAME].conf
 
     * Set the variables as you find suitable for your project.
 
@@ -210,6 +222,8 @@ Example usage of the option.
     `tm-vmm --create-client-conf  Debian-6.0`
 
 It is assumed that Debian-6.0 is a VirtualBox image.
+
+__Note:__ `--create-client-conf` will set the default value for the guest username to \`whoami\`. If your virtual machine uses some other username, you should modify the client configuration after running this command.
 
 ### Example of a client configuration:
 
@@ -233,11 +247,10 @@ For more variables see section Configuration syntax below
 
   `ssh-copy-id -p 2256 `
 
-
-
-
-
 ## Create an Android client
+
+
+
 
 In the example below we will assume it is called Nexus-10
 
@@ -252,7 +265,7 @@ You can create client configuration in two different ways:
 
 * Manually create a configuration file for the client (bound to a virtual machine):
 
-      [CLIENT NAME].conf
+      [CLIENT_NAME].conf
 
     * Set the variables as you find suitable for your project.
 
@@ -267,6 +280,8 @@ Example usage of the option.
     `tm-vmm --create-client-conf  Nexus-10`
 
 It is assumed that Debian-6.0 and Nexus-10 is the name either a VirtualBox or Android image.
+
+__Note:__ `--create-client-conf` will set the default value for the guest username to \`whoami\`. If your virtual machine uses some other username, you should modify the client configuration after running this command.
 
 ### Example of a client configuration:
 
@@ -290,7 +305,7 @@ of the manual.
 
 ### Starting with guest operating system visible
 
-`tm-vmm --start-client <CLIENTNAME>`
+`tm-vmm --start-client <CLIENT_NAME>`
 
 Example:
 
@@ -298,7 +313,7 @@ Example:
 
 ### Starting without showing guest operating system (headless)
 
-`tm-vmm --start-client-headless <CLIENTNAME>`
+`tm-vmm --start-client-headless <CLIENT_NAME>`
 
 Example:
 
@@ -306,7 +321,7 @@ Example:
 
 ## Checking status
 
-`tm-vmm --check-client-status <CLIENTNAME>`
+`tm-vmm --check-client-status <CLIENT_NAME>`
 
 Example:
 
@@ -314,7 +329,7 @@ Example:
 
 ## Stopping
 
-`tm-vmm --stop-client <CLIENTNAME>`
+`tm-vmm --stop-client <CLIENT_NAME>`
 
 Example:
 
@@ -360,7 +375,7 @@ The package “wmctrl” is used to resize windows.
 
 `sudo apt-get install wmctrl`
 
-# Launching tests using VMM
+# Launching tests using vmm
 
 ## Using crontab
 
@@ -423,7 +438,7 @@ VirtualBox manual, on how to create a new virtual machine. However we
 provide a guide below to make this easier. You can choose to use our
 settings or change some at your will.
 
-**Note:** *If you’re on a Ubuntu system you might have to add your user to the vboxusers group.*
+**Note:** *If you’re on a Ubuntu system you might have to add your user to the vboxusers group. This can done like this: <code>sudo adduser \`whoami\` vboxusers</code>.*
 
 ### Start Virtualbox
 
@@ -474,8 +489,9 @@ In the VM Virtualbox Manager window click "New"
 
 ![File location and size](screenshots/vbox-file-location-and-size.png)
 
-
 Your disk has now been created. Before starting it we need to do some additional settings.
+
+![Network](screenshots/vbox-network-1.png)
 
 ### Network
 
@@ -500,10 +516,6 @@ The following settings should be applied to Adapter 1.
  the host computer. See http://www.virtualbox.org/manual/ Chapter 6
  for additional information on bridged networking.*
 
-![Network](screenshots/vbox-network-1.png)
-
-
-
 ##### Allowing SSH logins to your virtual machine
 
 Open up the VirtualBox Manager
@@ -524,8 +536,10 @@ Add a new rule by clicking the + sign. Enter
 ![Network](screenshots/vbox-network-port-forward.png)
 
 #### USB
-Make sure USB is enabled if you plan to use a smart card reader or another USB device 
 
+Make sure USB is enabled if you plan to use a smart card reader or another USB device.
+
+You might encounter an error saying "Failed to access the USB subsystem". In that case, you probably need to add yourself to the vboxusers group. On Ubuntu, this can done like this: <code>sudo adduser \`whoami\` vboxusers</code>.
 
 To use a smart card reader in your virtual machine you have to do the following:
 
@@ -558,10 +572,13 @@ Follow the installation instructions to install Ubuntu in your new virtual machi
 
 To upgrade your system you need to:
 
-* Click on the Software updater icon to your left
+* Click on the Software updater icon to your left (it may take up to a few minutes before the icon appears)
 * Click install now
 * Enter password
 
+_Note:_ If the Software Updater icon is not available in the sidebar, you can press the "Win/Super" key and type "Software Updater" to start it.
+
+Ubuntu might require a restart when the update process is finished.
 
 #### Installing necessary tools in your virtual machine
 
@@ -584,7 +601,7 @@ Log in to your virtual machine as the user you created during installation.
 
 ##### Setting up a new user
 
-VMM puts no restrictions or requirements on the name of the user in
+vmm puts no restrictions or requirements on the name of the user in
 your virtual machine. The user name “vmm” is given here as an
 example and will be used in all manual text below.
 
@@ -627,6 +644,10 @@ Open up a user management tool by pressing the dasher (logo missing) and type us
 
   `ssh -p 2256 vmm@localhost -t "sudo mkdir /root/.ssh && sudo cp /home/vmm/.ssh/authorized_keys /root/.ssh/"`
 
+* Disable password (for user vmm) when using sudo 
+
+  `ssh -p 2257 root@localhost "echo \"vmm ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers"`
+
 * Test your root acoount
 
  `ssh -p 2256 root@localhost whoami`
@@ -646,6 +667,9 @@ choose to use our settings or change some at your will. In this guide
 we will setup a Nexus 7 device.
 
 ### Start Android Virtual Device Manager
+
+First, you need to make sure that the ANDROID and ANDROID_ADT_PATH environment
+variables are set, so that vmm can find the Android application utilities.
 
 In a terminal, type:
 
@@ -706,7 +730,7 @@ Join this list here:
 `https://lists.testingmachine.eu/cgi-bin/mailman/listinfo/community`
 
 If you send emails to this list as a non subscriber chances are it
-will get list. 
+will get lost. 
 
 If you want to report a bug:
 * use a github account and add an issue
@@ -730,7 +754,7 @@ Source code is located here:
 https://twitter.com/FSCRS
 
 
-# Testing Machine VMM configuration
+# Testing Machine vmm configuration
 
 ## Configuration file syntax
 
@@ -740,11 +764,11 @@ The syntax for setting a variable is the same as in bash scrips (no coincidence!
 
 ### Variables 
 
-`LOG_FILE_DIR=/tmp/vmm/log` - sets the log file base directory to /tmp/vmm/log. This means that all logs can be found here.
+`LOG_FILE_DIR=/tmp/tm-vmm/log` - sets the log file base directory to /tmp/vmm/log. This means that all logs can be found here.
 
 `VM_STARTUP_TIMEOUT=10` - the time to wait for a virtual machine to start up before considering it to be 'dead'.
 
-`VM_STOP_TIMEOUT=20` - the time to wait for a virtual machine to start up before taking more drastic actions to take down the machine. Ultimately VMM will take down a machine with a `kill`.
+`VM_STOP_TIMEOUT=20` - the time to wait for a virtual machine to start up before taking more drastic actions to take down the machine. Ultimately vmm will take down a machine with a `kill`.
 
 `SSH=ssh` - the SSH program to use
 
@@ -762,7 +786,13 @@ The syntax for setting a variable is the same as in bash scrips (no coincidence!
 
 `SSH_PORT=22` - the port where the SSH server is running on the client
 
-`SSH_SHUTDOWN_COMMAND="shutdown -h now"` - VVM will do its very best to shut down a machine as gracefully as possible. One way to do this is to try to shut it down using SSH. The command in this variable will be used to do that.
+`SSH_SHUTDOWN_COMMAND="shutdown -h now"` - vmm will do its very best to shut down a machine as gracefully as possible. One way to do this is to try to shut it down using SSH. The command in this variable will be used to do that.
+
+`ANDROID_ADT_PATH=/opt/adt-bundle-linux-x86_64-20130219` - Path to Android SDK installation. vmm will use this to find the commands adb and android. 
+
+`ANDROID=~/example/bin/android` - Specify the android command. This overrides the android command as found using the environment variable ANDROID_ADT_PATH.
+
+`ADB=~/example/bin/adb` - Specify the adb command. This overrides the android command as found using the environment variable ANDROID_ADT_PATH.
 
 
 # tm-vmm Command line options
@@ -770,47 +800,86 @@ The syntax for setting a variable is the same as in bash scrips (no coincidence!
 
 ## Client options
 
-`--list-clients` - lists all configured clients
+`--list-clients` - Lists all configured clients
 
-`--start-client CLIENT` - starts client name CLIENT
+`--start-client CLIENT_NAME` - Starts the client called CLIENT_NAME
 
-`--start-client-headless CLIENT_NAME` - Start client called CLIENT_NAME as headless (no screen)
+`--start-client-headless CLIENT_NAME` - Starts the client called CLIENT_NAME as headless (no screen)
 
-`--stop-clients CLIENT` - stops client named CLIENT
+`--stop-clients CLIENT_NAME` - Stops the client called CLIENT_NAME
 
 `--list-running-clients` - Lists all clients currently running
 
-`--check-client-ssh CLIENT` - Checks if ssh is up on CLIENT
+`--check-client-ssh CLIENT_NAME` - Checks if ssh is up on the client called CLIENT_NAME
 
-`--check-client-status CLIENT` - Checks if clients is up and running
+`--check-client-status CLIENT_NAME` - Checks if the client called CLIENT_NAME is up and running
 
-`--client-exec CLIENT cmd` - Execeute cmd on client
+`--client-exec CLIENT_NAME COMMAND` - Execeutes the COMMAND on the client called CLIENT_NAME
 
-`--client-exec-as-root` - Execeute cmd on client as root
+`--client-exec-as-root CLIENT_NAME COMMAND` - Execeutes the COMMAND on the client called CLIENT_NAME as root
 
-`--client-x11 CLIENT` - Checks if X11 is up and running on CLIENT
+`--client-x11 CLIENT_NAME` - Checks if X11 is up and running on the client called CLIENT_NAME
 
-`--client-screenshot CLIENT` - Take a screenshot on CLIENT (not 100% ready)
+`--client-screenshot CLIENT_NAME` - Takes a screenshot on the client called CLIENT_NAME (not 100% ready)
 
-`--print-client CLIENT` - Print the configuration for CLIENT
+`--print-client CLIENT_NAME` - Prints the configuration for the client called CLIENT_NAME
 
-`--wait-for-ssh CLIENT` - Wait until ssh is up and running on CLIENT
+`--wait-for-ssh CLIENT_NAME TIMEOUT<optional>` - Waits until ssh is up and running on the client called CLIENT_NAME (Default TIMEOUT value is 120 if it is not set by the user)
 
-`--open-ssh CLIENT` - Open an interactive shell (using ssh) on CLIENT
+`--wait-for-client CLIENT_NAME TIMEOUT<optional>` - (Needs updating) (Default TIMEOUT value is 120 if it is not set by the user)
 
-`--check-client-online CLIENT` - Check if CLIENT can ping the outside world
+`--open-ssh CLIENT_NAME TIMEOUT<optional>` - Opens an interactive shell (using ssh) on the client called CLIENT_NAME (Default TIMEOUT value is 120 if it is not set by the user)
+
+`--check-client-online CLIENT_NAME` - Checks if the client called CLIENT_NAME can ping the outside world
+
+`--pause-client CLIENT_NAME` - Pauses the running client
+
+`--resume-client CLIENT_NAME` - Resumes the paused client
+
+`--client-exec-fail CLIENT_NAME COMMAND` - Executes the COMMAND on the client called CLIENT_NAME and turns it off upon failure
+
+`--create-client-conf CLIENT_NAME` - Creates the configuration for the client called CLIENT_NAME automatically
+
+`--snapshot-client CLIENT_NAME` - Takes a screen shot on the client called CLIENT_NAME (not implemented for VirtualBox)
+
+`--client-copy-file SRC DST` - Copies a file from a client to a host or from a host to a client; a host resource could be "~/myhostfile", and a client resource could be "[CLIENT_NAME]:~/myclientfile"
+
+`--is-client-up CLIENT_NAME` - Checks whether the client called CLIENT_NAME is running
+
+`--unlock-screen CLIENT_NAME` - Unlocks the screen of the virtual machine (Android only for now)
+
+`--install-app CLIENT_NAME PACKAGE` - Installs application PACKAGE on the client called CLIENT_NAME (APK, DEB or RPM); APK files are not yet transferred to the client
+
+`--uninstall-app CLIENT_NAME APP_NAME` - Uninstalls application APP_NAME on the client called CLIENT_NAME (APK, DEB or RPM)
+
+`--print-client-settings CLIENT_NAME` - Prints the path to the client's configuration
+
+`--get-client-os CLIENT_NAME` - Displays the operating system of the client called CLIENT_NAME
+
+`--for-clients-run SCRIPT [CLIENT_NAMES]` - For each client, starts it, run the script, and stop it. CLIENT_NAMES is a semi-colon-seprated list of client names. If CLIENT_NAMES is left out, all clients will be used. The following variables will be set in the script: CLIENT_NAME, CLIENT_TYPE ("vbox" or "android"), CLIENT_STARTED (0 means yes), CLIENT_UP (0 means yes), and CLIENT_SSH_UP (0 means yes).
 
 
 ## Machine options
 
-`  --list-machines` - lists all machines known to VVM
+`  --list-machines` - Lists all machines known to vmm
 
-`  --start-machine MACHINE` - starts machine named MACHINE
+`  --start-machine MACHINE_NAME` - Starts machine named MACHINE
 
-` --start-machine-headless VM_NAME` - Start machine called VM_NAME as headless (no screen)
+` --start-machine-headless MACHINE_NAME` - Starts machine called VM_NAME as headless (no screen)
 
-` --stop-machine MACHINE`  - stops machine named MACHINE
+` --stop-machine MACHINE_NAME`  - Stops machine named MACHINE
 
-` --check-machine MACHINE` - checks status on machine named MACHINE
+` --check-machine-status MACHINE_NAME` - Checks status on the machine called MACHINE_NAME
+
+`--list-running-machines` - Lists all machines currently running
+
+`--pause-machine MACHINE_NAME` - Pauses the running virtual machine
+
+`--resume-machine MACHINE_NAME` - Resumes the paused virtual machine
 
 
+## Other
+
+`--version` - Checks the current version of the tm-vmm
+
+`--import-appliance APPLIANCE` - Imports an OVA file into VirtualBox (OVF, Open Virtualization Format, is a cross-platform standard for packaging ready-made virtual machines that can be imported to virtualizers, while OVA is the name of a tar archive file with the OVF directory inside)

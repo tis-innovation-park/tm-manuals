@@ -15,7 +15,7 @@
 <li><a href="#about-the-software">About the software</a></li>
 <li><a href="#the-egov-testing-machine">The eGov Testing Machine</a></li>
 <li><a href="#software-overview">Software Overview</a><ul>
-<li><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (VMM)</a></li>
+<li><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (vmm)</a></li>
 <li><a href="#egov-manuals">eGov Manuals</a></li>
 </ul></li>
 </ul></li>
@@ -63,7 +63,7 @@
 <p>The eGov Testing Machine can be thought of as a virtual group of people, sitting at the computer and using the eGov services and checking if they work properly, allowing the local Public Administration to test eGov services on a daily basis that are being offered to all citizens.</p>
 <h2 id="software-overview"><a href="#software-overview">Software Overview</a></h2>
 <p>The Testing Machine is currently made up by Virtual Machine Manager (tm-vmm) and documentation on how to wite, execute and automate tests of eGov sites in particular but also other softwares.</p>
-<h3 id="virtual-machine-manager-vmm"><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (VMM)</a></h3>
+<h3 id="virtual-machine-manager-vmm"><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (vmm)</a></h3>
 <p>tm-vmm is made up by bash scripts that let the user manage various virtual machine software in a general way. See the tm-vmm manual for more information.</p>
 <h3 id="egov-manuals"><a href="#egov-manuals">eGov Manuals</a></h3>
 <p>Writing tests of eGov sites is not hard but we believe that some help will still be useful for most people. The manuals and guides provided together with tm-vmm make it possible to test eGov sites automatically and unattended.</p>
@@ -71,6 +71,7 @@
 <h2 id="virtual-machine-management"><a href="#virtual-machine-management">Virtual Machine Management</a></h2>
 <p>With Testing Machine you can:</p>
 <ul>
+<li><p>manage VirtualBox, Android, and QEMU virtual machines with a unified interface</p></li>
 <li><p>start/pause/stop virtual machines</p></li>
 <li><p>take screenshots of running virtual machines</p></li>
 <li><p>execute commands in running virtual machines # Installation</p></li>
@@ -79,13 +80,13 @@
 <p>Coming later</p>
 <h2 id="building-and-installing-virtual-machine-manager"><a href="#building-and-installing-virtual-machine-manager">Building and installing Virtual Machine Manager</a></h2>
 <ul>
-<li>Go to the vvm directory</li>
+<li>Go to the vmm directory</li>
 </ul>
-<p><code>cd vvm</code></p>
+<p><code>cd vmm</code></p>
 <ul>
-<li>Configure the software</li>
+<li>Configure the software (you can use –prefix=<installationdir> to specify a non-default installation directory)</li>
 </ul>
-<p><code>./configure --prefix &lt;installationdir&gt;</code></p>
+<p><code>./configure</code></p>
 <ul>
 <li>Build the software</li>
 </ul>
@@ -95,9 +96,9 @@
 </ul>
 <p><code>sudo make install</code></p>
 <ul>
-<li>Verify the installation</li>
+<li>Verify the installation (you might need to prepend the path to tm-vmm, if the installation directory is not in your $PATH)</li>
 </ul>
-<p><code>&lt;installationdir&gt;/bin/tm-vmm --list-clients</code></p>
+<p><code>tm-vmm --list-clients</code></p>
 <h2 id="setup"><a href="#setup">Setup</a></h2>
 <ul>
 <li>Create the directory $HOME/.testingmachine</li>
@@ -131,7 +132,7 @@
 <h2 id="mailing-list"><a href="#mailing-list">Mailing list</a></h2>
 <p>We have one mailing list for the project: <code>community@testingmachine.eu</code></p>
 <p>Join this list here: <code>https://lists.testingmachine.eu/cgi-bin/mailman/listinfo/community</code></p>
-<p>If you send emails to this list as a non subscriber chances are it will get list.</p>
+<p>If you send emails to this list as a non subscriber chances are it will get lost.</p>
 <p>If you want to report a bug: * use a github account and add an issue * subscribe to the mailing and send the report to the list</p>
 <h2 id="blog"><a href="#blog">Blog</a></h2>
 <p>https://testingmachine.eu/blog</p>
@@ -145,19 +146,19 @@
 <p>Regardless of the underlying virtual machine you manage the machine in one way. We provide the most basic uses of tm-vmm here and encourage you to read the complete list of command line options in the last section of the manual.</p>
 <h2 id="starting"><a href="#starting">Starting</a></h2>
 <h3 id="starting-with-guest-operating-system-visible"><a href="#starting-with-guest-operating-system-visible">Starting with guest operating system visible</a></h3>
-<p><code>tm-vmm --start-client &lt;CLIENTNAME&gt;</code></p>
+<p><code>tm-vmm --start-client &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --start-client Ubuntu-10</code></p>
 <h3 id="starting-without-showing-guest-operating-system-headless"><a href="#starting-without-showing-guest-operating-system-headless">Starting without showing guest operating system (headless)</a></h3>
-<p><code>tm-vmm --start-client-headless &lt;CLIENTNAME&gt;</code></p>
+<p><code>tm-vmm --start-client-headless &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --start-client-headless Ubuntu-10</code></p>
 <h2 id="checking-status"><a href="#checking-status">Checking status</a></h2>
-<p><code>tm-vmm --check-client-status &lt;CLIENTNAME&gt;</code></p>
+<p><code>tm-vmm --check-client-status &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --check-client-status Ubuntu-10</code></p>
 <h2 id="stopping"><a href="#stopping">Stopping</a></h2>
-<p><code>tm-vmm --stop-client &lt;CLIENTNAME&gt;</code></p>
+<p><code>tm-vmm --stop-client &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --stop-client Ubuntu-10</code></p>
 </body>

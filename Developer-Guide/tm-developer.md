@@ -2,7 +2,6 @@
 
 # Testing Machine Developer Guideline
 
-
 ## About the project
 The Autonomous Province of Bolzano currently offers important digital
 services (for eg, online applications to start businesses, pay

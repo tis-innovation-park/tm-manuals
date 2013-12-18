@@ -56,7 +56,7 @@ The Testing Machine is currently made up by Virtual Machine Manager
 (tm-vmm) and documentation on how to wite, execute and automate tests
 of eGov sites in particular but also other softwares.
 
-### Virtual Machine Manager (VMM)
+### Virtual Machine Manager (vmm)
 
 tm-vmm is made up by bash scripts that let the user manage various
 virtual machine software in a general way. See the tm-vmm manual for
@@ -75,6 +75,8 @@ and unattended.
 
 With Testing Machine you can:
 
+* manage VirtualBox, Android, and QEMU virtual machines with a unified interface
+
 * start/pause/stop virtual machines
 
 * take screenshots of running virtual machines
@@ -88,13 +90,14 @@ With Testing Machine you can:
 
 ## Building and installing Virtual Machine Manager
 
-* Go to the vvm directory
+* Go to the vmm directory
 
-  `cd vvm`
+  `cd vmm`
 
-* Configure the software
+* Configure the software (you can use --prefix=<installationdir> to
+  specify a non-default installation directory)
 
-  `./configure --prefix <installationdir>`
+  `./configure`
 
 * Build the software
 
@@ -104,9 +107,10 @@ With Testing Machine you can:
 
   `sudo make install`
 
-* Verify the installation
+* Verify the installation (you might need to prepend the path to tm-vmm, if the
+  installation directory is not in your $PATH)
 
-  `<installationdir>/bin/tm-vmm --list-clients`
+  `tm-vmm --list-clients`
 
 
 ## Setup 
@@ -168,7 +172,7 @@ Join this list here:
 `https://lists.testingmachine.eu/cgi-bin/mailman/listinfo/community`
 
 If you send emails to this list as a non subscriber chances are it
-will get list. 
+will get lost. 
 
 If you want to report a bug:
 * use a github account and add an issue
@@ -203,7 +207,7 @@ of the manual.
 
 ### Starting with guest operating system visible
 
-`tm-vmm --start-client <CLIENTNAME>`
+`tm-vmm --start-client <CLIENT_NAME>`
 
 Example:
 
@@ -211,7 +215,7 @@ Example:
 
 ### Starting without showing guest operating system (headless)
 
-`tm-vmm --start-client-headless <CLIENTNAME>`
+`tm-vmm --start-client-headless <CLIENT_NAME>`
 
 Example:
 
@@ -219,7 +223,7 @@ Example:
 
 ## Checking status
 
-`tm-vmm --check-client-status <CLIENTNAME>`
+`tm-vmm --check-client-status <CLIENT_NAME>`
 
 Example:
 
@@ -227,7 +231,7 @@ Example:
 
 ## Stopping
 
-`tm-vmm --stop-client <CLIENTNAME>`
+`tm-vmm --stop-client <CLIENT_NAME>`
 
 Example:
 
