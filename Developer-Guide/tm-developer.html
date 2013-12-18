@@ -15,9 +15,28 @@
 <li><a href="#about-the-software">About the software</a></li>
 <li><a href="#the-egov-testing-machine">The eGov Testing Machine</a></li>
 <li><a href="#software-overview">Software Overview</a><ul>
-<li><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (VMM)</a></li>
+<li><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (vmm)</a></li>
 <li><a href="#egov-manuals">eGov Manuals</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#architecture">Architecture</a><ul>
+<li><a href="#directory-overview">Directory overview</a><ul>
+<li><a href="#bin">bin</a></li>
+<li><a href="#devel-stuff">devel-stuff</a></li>
+<li><a href="#doc">doc</a></li>
+<li><a href="#examples">examples</a></li>
+<li><a href="#scripts">scripts</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#adding-bash-code-or-fixing-bugs">Adding bash code or fixing bugs</a><ul>
+<li><a href="#add-a-new-command-line-option">Add a new command line option</a></li>
+<li><a href="#add-bash-functions">Add bash functions</a></li>
+</ul></li>
+<li><a href="#writing-documentation">Writing documentation</a></li>
+<li><a href="#building-testing-machine">Building Testing Machine</a><ul>
+<li><a href="#configure-the-scripts-and-makfile">Configure the scripts and Makfile</a></li>
+<li><a href="#build">Build</a></li>
+<li><a href="#install-and-verify">Install and verify</a></li>
 </ul></li>
 <li><a href="#project-communication">Project Communication</a><ul>
 <li><a href="#reporting-bugs">Reporting bugs</a></li>
@@ -36,15 +55,17 @@
 </ul></li>
 <li><a href="#fixing-bugs-and-issues">Fixing bugs and issues</a></li>
 <li><a href="#discussions">Discussions</a></li>
-<li><a href="#writing-documentation">Writing documentation</a></li>
 <li><a href="#generating-manuals">Generating Manuals</a><ul>
 <li><a href="#requirements">Requirements</a><ul>
 <li><a href="#debian-based-gnulinux-distributions">Debian based GNU/Linux distributions</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#releasing">Releasing</a><ul>
+<li><a href="#releasing-the-software">Releasing the software</a><ul>
 <li><a href="#manual-release">Manual release</a></li>
 <li><a href="#scripted-release">Scripted release</a></li>
+</ul></li>
+<li><a href="#releasing-the-manuals">Releasing the manuals</a><ul>
+<li><a href="#scripted-release-1">Scripted release</a></li>
 </ul></li>
 </ul>
 </div>
@@ -64,10 +85,89 @@
 <p>The eGov Testing Machine can be thought of as a virtual group of people, sitting at the computer and using the eGov services and checking if they work properly, allowing the local Public Administration to test eGov services on a daily basis that are being offered to all citizens.</p>
 <h2 id="software-overview"><a href="#software-overview">Software Overview</a></h2>
 <p>The Testing Machine is currently made up by Virtual Machine Manager (tm-vmm) and documentation on how to wite, execute and automate tests of eGov sites in particular but also other softwares.</p>
-<h3 id="virtual-machine-manager-vmm"><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (VMM)</a></h3>
+<h3 id="virtual-machine-manager-vmm"><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (vmm)</a></h3>
 <p>tm-vmm is made up by bash scripts that let the user manage various virtual machine software in a general way. See the tm-vmm manual for more information.</p>
 <h3 id="egov-manuals"><a href="#egov-manuals">eGov Manuals</a></h3>
 <p>Writing tests of eGov sites is not hard but we believe that some help will still be useful for most people. The manuals and guides provided together with tm-vmm make it possible to test eGov sites automatically and unattended.</p>
+<h1 id="architecture"><a href="#architecture">Architecture</a></h1>
+<h2 id="directory-overview"><a href="#directory-overview">Directory overview</a></h2>
+<h3 id="bin"><a href="#bin">bin</a></h3>
+<p>Directory containing all programs visible to the user.</p>
+<ul>
+<li><p>tm-vmm - main program for the management of virtual machines. This script is basically a parser for the functions as stored in the scripts in the scripts directory.</p></li>
+<li><p>tm-vmm-auto - outdated script previously used to automate stuff</p></li>
+</ul>
+<h3 id="devel-stuff"><a href="#devel-stuff">devel-stuff</a></h3>
+<p>A directory containing scripts and other files that can be used while developing Teting Machine. Nothing of this stuff need be included in the distribution.</p>
+<ul>
+<li><p>bin - contains scripts</p>
+<ul>
+<li>create-dist.sh - script to create a new distribution</li>
+</ul></li>
+</ul>
+<h3 id="doc"><a href="#doc">doc</a></h3>
+<p>This is the directory conataining the manuals and other documentation. The manuals are written in Markdown format.</p>
+<ul>
+<li>*.md - Source version of the manuals</li>
+<li>generated-files - all files generated from the .md files are placed here</li>
+<li>pics - pictures used in the manuals</li>
+<li>faq-pics - pictures related to the FAQ</li>
+</ul>
+<h3 id="examples"><a href="#examples">examples</a></h3>
+<p>Various examples of how to Testing Machine. We will remove this directory since we switched to using a separate repository (tm-examples) for this purpose.</p>
+<h3 id="scripts"><a href="#scripts">scripts</a></h3>
+<p>This is where the functionality of Testing Machine is stored.</p>
+<ul>
+<li>functions</li>
+<li>generate-conf</li>
+<li>vmm-client-android-specific</li>
+<li>vmm-client-qemu-specific</li>
+<li><p>vmm-client-functions</p></li>
+<li>loggers - directory containing various scripts that implements different logging functionalities.
+<ul>
+<li>debug</li>
+<li>debug-logger</li>
+<li>txt</li>
+<li>txt-logger</li>
+</ul></li>
+</ul>
+<h1 id="adding-bash-code-or-fixing-bugs"><a href="#adding-bash-code-or-fixing-bugs">Adding bash code or fixing bugs</a></h1>
+<h2 id="add-a-new-command-line-option"><a href="#add-a-new-command-line-option">Add a new command line option</a></h2>
+<p>If you want to a new command line option to tm-vmm you should update the bin/tm-vmm.tmpl file. Make sure to add code to parse the command line and also as an entry in the help printout.</p>
+<p>Update the documentation accordingly.</p>
+<h2 id="add-bash-functions"><a href="#add-bash-functions">Add bash functions</a></h2>
+<p>If you want to fix bugs or add new features add this in the scripts directory.</p>
+<p>If you add a bash file, make sure to update the Makefile.tmpl accordingly.</p>
+<h1 id="writing-documentation"><a href="#writing-documentation">Writing documentation</a></h1>
+<p>All documentation is written in Markdown format. We use pandoc to generate html and pdf.</p>
+<p>Each chapter/section is written in separate files to make them more easily re-usable. Since there’s no <em>include</em> functionality in Markdown we had used the Makefile to cp/cat together the various manuals. Perhaps not the most optimal way of doing things - but it works. If you have improvement suggestion you’re more than welcome.</p>
+<p>If you add a markdown file, make sure to update the doc/Makefile.tmpl accordingly.</p>
+<h1 id="building-testing-machine"><a href="#building-testing-machine">Building Testing Machine</a></h1>
+<p>The scripts and Makefiles in Testing Machine contains variables used to store the installation dir. This is needed to source all bash files.</p>
+<p>The scripts and Makefiles are created, with the variables descrbied above updated according to the installation dir, from templates.</p>
+<h2 id="configure-the-scripts-and-makfile"><a href="#configure-the-scripts-and-makfile">Configure the scripts and Makfile</a></h2>
+<ul>
+<li>Go to the vmm directory</li>
+</ul>
+<p><code>cd vmm</code></p>
+<ul>
+<li>Configure the software (you can use –prefix=<installationdir> to specify a non-default installation directory)</li>
+</ul>
+<p><code>./configure</code></p>
+<h2 id="build"><a href="#build">Build</a></h2>
+<ul>
+<li>Build the software</li>
+</ul>
+<p><code>make</code></p>
+<h2 id="install-and-verify"><a href="#install-and-verify">Install and verify</a></h2>
+<ul>
+<li>Install the software</li>
+</ul>
+<p><code>sudo make install</code></p>
+<ul>
+<li>Verify the installation (you might need to prepend the path to tm-vmm, if the installation directory is not in your $PATH)</li>
+</ul>
+<p><code>tm-vmm --list-clients</code></p>
 <h1 id="project-communication"><a href="#project-communication">Project Communication</a></h1>
 <h2 id="reporting-bugs"><a href="#reporting-bugs">Reporting bugs</a></h2>
 <p>Try to be as precise as possible when reporting bugs. The more information we get the bigger chance we have of fixing the problem.</p>
@@ -78,7 +178,7 @@
 <h2 id="mailing-list"><a href="#mailing-list">Mailing list</a></h2>
 <p>We have one mailing list for the project: <code>community@testingmachine.eu</code></p>
 <p>Join this list here: <code>https://lists.testingmachine.eu/cgi-bin/mailman/listinfo/community</code></p>
-<p>If you send emails to this list as a non subscriber chances are it will get list.</p>
+<p>If you send emails to this list as a non subscriber chances are it will get lost.</p>
 <p>If you want to report a bug: * use a github account and add an issue * subscribe to the mailing and send the report to the list</p>
 <h2 id="blog"><a href="#blog">Blog</a></h2>
 <p>https://testingmachine.eu/blog</p>
@@ -105,10 +205,12 @@
 <h1 id="discussions"><a href="#discussions">Discussions</a></h1>
 <p>If you need to ask question, need to raise an issue, discuss a bug or simply say something nice, send an email to the mailing list (community@).</p>
 <p>Do you wish for another media (IRC, forum…) propose it on the mailing list.</p>
-<h1 id="writing-documentation"><a href="#writing-documentation">Writing documentation</a></h1>
-<p>All documentation is written in Markdown format. We use pandoc to generate html and pdf.</p>
-<p>Each chapter/section is written in separate files to make them more easily re-usable. Since there’s no <em>include</em> functionality in Markdown we had use the Makefile to cp/cat together the various manuals. Perhaps not the most optimal way of doing things - but it works. If you have improvement suggestion you’re more than welcome.</p>
 <h1 id="generating-manuals"><a href="#generating-manuals">Generating Manuals</a></h1>
+<p>To generate manuals you simply enter the doc directory:</p>
+<p><code>cd doc</code></p>
+<p>and then type:</p>
+<p><code>make</code></p>
+<p>The generated documentation are stored in the generated-files directory.</p>
 <h2 id="requirements"><a href="#requirements">Requirements</a></h2>
 <p>To generate the manuals from the Markdown sources you need to install:</p>
 <ul>
@@ -118,7 +220,7 @@
 <p>We provide a list of packages to install for some GNU/Linux distributions:</p>
 <h3 id="debian-based-gnulinux-distributions"><a href="#debian-based-gnulinux-distributions">Debian based GNU/Linux distributions</a></h3>
 <p><code>sudo apt-get install</code> <code>sudo apt-get pandoc texlive-latex-base</code></p>
-<h1 id="releasing"><a href="#releasing">Releasing</a></h1>
+<h1 id="releasing-the-software"><a href="#releasing-the-software">Releasing the software</a></h1>
 <h2 id="manual-release"><a href="#manual-release">Manual release</a></h2>
 <p>To release we go through the following procedure:</p>
 <ul>
@@ -165,5 +267,9 @@
 <li><p><code>--push</code> - Push the code (and tags) up to github</p></li>
 <li><p><code>--force-tag</code> - If the tag already exists, overwrite it</p></li>
 </ul>
+<h1 id="releasing-the-manuals"><a href="#releasing-the-manuals">Releasing the manuals</a></h1>
+<h2 id="scripted-release-1"><a href="#scripted-release-1">Scripted release</a></h2>
+<p><code>cd doc</code></p>
+<p><code>make clean all release-doc</code></p>
 </body>
 </html>
