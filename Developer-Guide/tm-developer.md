@@ -326,6 +326,9 @@ To release we go through the following procedure:
 
 `./configure --prefix /tmp && make clean all install`
 
+* Update the tm-manuals repository
+`cd doc && make clean all release-doc; cd ..`
+
 * Verify the build
 
      * Check the version
@@ -334,12 +337,9 @@ To release we go through the following procedure:
      * Make sure all script are installed
        `/tmp/bin/tm-vmm --list-clients`
 
-     * Make sure all pdfs are installed
-       `ls -l /tmp/share/testingmachine/doc`
-
 * Tag the code with the same version as you used in the configure script.
 
-     `git commit -m <some comment>`
+     `git tag -a <version number> -m '<version number'`
 
 * Push the code and the tag
      `git push`
@@ -349,7 +349,7 @@ To release we go through the following procedure:
 
       `make dist`
 
-* Upload ....
+* Upload `tmp/testing-machine-0.14.tar.gz` to tm-releases
 
 ## Scripted release
 

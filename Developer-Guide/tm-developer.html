@@ -236,18 +236,18 @@
 </ul>
 <p><code>./configure --prefix /tmp &amp;&amp; make clean all install</code></p>
 <ul>
+<li><p>Update the tm-manuals repository <code>cd doc &amp;&amp; make clean all release-doc; cd ..</code></p></li>
 <li><p>Verify the build</p>
 <ul>
 <li><p>Check the version <code>/tmp/bin/tm-vmm --version</code></p></li>
 <li><p>Make sure all script are installed <code>/tmp/bin/tm-vmm --list-clients</code></p></li>
-<li><p>Make sure all pdfs are installed <code>ls -l /tmp/share/testingmachine/doc</code></p></li>
 </ul></li>
 <li><p>Tag the code with the same version as you used in the configure script.</p>
-<p><code>git commit -m &lt;some comment&gt;</code></p></li>
+<p><code>git tag -a &lt;version number&gt; -m '&lt;version number'</code></p></li>
 <li><p>Push the code and the tag <code>git push</code> <code>git push --tags</code></p></li>
 <li><p>Build</p>
 <p><code>make dist</code></p></li>
-<li><p>Upload ….</p></li>
+<li><p>Upload <code>tmp/testing-machine-0.14.tar.gz</code> to tm-releases</p></li>
 </ul>
 <h2 id="scripted-release"><a href="#scripted-release">Scripted release</a></h2>
 <p>We’ve written a script to help release a new version of Testing Machine. Before you call it:</p>
