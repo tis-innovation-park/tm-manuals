@@ -130,25 +130,25 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div class="figure">
 <img src="pics/fscrs.png" />
 </div>
-<h1 id="egov-testing-machine-manual"><a href="#egov-testing-machine-manual">eGov Testing Machine Manual</a></h1>
-<h2 id="about-the-project"><a href="#about-the-project">About the project</a></h2>
+<h1 id="egov-testing-machine-manual">eGov Testing Machine Manual</h1>
+<h2 id="about-the-project">About the project</h2>
 <p>The Autonomous Province of Bolzano currently offers important digital services (for eg, online applications to start businesses, pay property taxes and initiate e-Payments etc), the number is expected to increase as eGoverment services continue to grow.</p>
 <p>The FSCRS project intends to contribute to the creation and improvement of eGovernment services through an innovative process that verifies and tests functionality. The underlying idea of the project is that the accessibility of digital public services is necessary to increase the innovation potential of the region. .</p>
 <p>The project takes its name from the Free Software Client Reference System, a specific reference system (OS + defined set of software applications) that during testing simulates a user accessing the services.</p>
-<h2 id="about-the-software"><a href="#about-the-software">About the software</a></h2>
+<h2 id="about-the-software">About the software</h2>
 <p>Testingmachine is used to test eGovernment services. The eGovernment services can vary from country to country but generally it grants citizens access to important documents and information. In most EU countries there are additional services like paying property tax that can be done online. Most governments in Europe are leaning in this direction in order to decrease administrative overhead.</p>
 <p>Another challenge to overcome will be testing eGov services on mobile platforms, more specifially automating tests under Android. Good news is this is possible using Selenium. The one major obstacle that we face is getting around the smart card login. So far I am unaware of getting this to work under Android unless you patch the kernel and this is of course no an option. More documentation and research is needed concerning this.</p>
-<h2 id="the-egov-testing-machine"><a href="#the-egov-testing-machine">The eGov Testing Machine</a></h2>
+<h2 id="the-egov-testing-machine">The eGov Testing Machine</h2>
 <p>The expected result is the development of a systematic, auto validation process, currently not available on the market, which allows the testing of eGovernment services without the manual intervention of an operator</p>
 <p>The eGov Testing Machine can be thought of as a virtual group of people, sitting at the computer and using the eGov services and checking if they work properly, allowing the local Public Administration to test eGov services on a daily basis that are being offered to all citizens.</p>
-<h2 id="software-overview"><a href="#software-overview">Software Overview</a></h2>
+<h2 id="software-overview">Software Overview</h2>
 <p>The Testing Machine is currently made up by Virtual Machine Manager (tm-vmm) and documentation on how to wite, execute and automate tests of eGov sites in particular but also other softwares.</p>
-<h3 id="virtual-machine-manager-vmm"><a href="#virtual-machine-manager-vmm">Virtual Machine Manager (vmm)</a></h3>
+<h3 id="virtual-machine-manager-vmm">Virtual Machine Manager (vmm)</h3>
 <p>tm-vmm is made up by bash scripts that let the user manage various virtual machine software in a general way. See the tm-vmm manual for more information.</p>
-<h3 id="egov-manuals"><a href="#egov-manuals">eGov Manuals</a></h3>
+<h3 id="egov-manuals">eGov Manuals</h3>
 <p>Writing tests of eGov sites is not hard but we believe that some help will still be useful for most people. The manuals and guides provided together with tm-vmm make it possible to test eGov sites automatically and unattended.</p>
-<h1 id="features"><a href="#features">Features</a></h1>
-<h2 id="virtual-machine-management"><a href="#virtual-machine-management">Virtual Machine Management</a></h2>
+<h1 id="features">Features</h1>
+<h2 id="virtual-machine-management">Virtual Machine Management</h2>
 <p>With Testing Machine you can:</p>
 <ul>
 <li><p>manage VirtualBox, Android, and QEMU virtual machines with a unified interface</p></li>
@@ -156,31 +156,31 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><p>take screenshots of running virtual machines</p></li>
 <li><p>execute commands in running virtual machines # Installation</p></li>
 </ul>
-<h2 id="software-requirements"><a href="#software-requirements">Software requirements</a></h2>
+<h2 id="software-requirements">Software requirements</h2>
 <p>The bash, ssh and expect programs will be needed, but they are included in most popular Linux distributions out-of-the-box.</p>
 <p>You will also want at least one virtualization software (see list of supported softwares below). The wmctrl package is optional, but with allow vmm to maximize the window of your VirtualBox client systems.</p>
 <p>In order to use vmm to run <a href="the%20Testing%20Machine%20examples">https://github.com/tis-innovation-park/tm-examples</a>, you will want a Java SDK and Ant. For Debian, run <code>apt-get install default-jdk</code>. For Ubuntu, run <code>sudo apt-get install default-jdk ant</code>. For Fedora, run <code>yum install java-1.7.0-openjdk ant</code>.</p>
-<h3 id="additional-requirements-for-vmm-developers"><a href="#additional-requirements-for-vmm-developers">Additional requirements for vmm developers</a></h3>
+<h3 id="additional-requirements-for-vmm-developers">Additional requirements for vmm developers</h3>
 <ul>
 <li><p>pandoc - to generate documentation</p></li>
 <li><p>pdflatex - to generate documentation</p></li>
 </ul>
-<h2 id="supported-virtualization-software"><a href="#supported-virtualization-software">Supported Virtualization software</a></h2>
+<h2 id="supported-virtualization-software">Supported Virtualization software</h2>
 <ul>
 <li><p>Virtualbox (install it using <code>apt-get install linux-headers-$(uname -r|sed   's,[^-]*-[^-]*-,,') virtualbox</code> on Debian-based systems (such as Debian and Ubuntu), or grab it from <a href="the%20VirtualBox%20Linux%20Downloads%20section">https://www.virtualbox.org/wiki/Linux_Downloads</a>)</p></li>
 <li><p>Android (install it by downloading <a href="the%20Android%20Development%20Toolkit%20Bundle">https://developer.android.com/sdk/index.html</a>, extract the ZIP archive, modify ~/.bashrc to include <code>export   ANDROID_ADT_PATH=&lt;Path to ADT bundle directory&gt;</code>, and update your environment by executing <code>source ~/.bashrc</code>)</p></li>
 <li><p>qemu</p></li>
 </ul>
 <p>We might support vmware in the future.</p>
-<h2 id="downloading-virtual-machine-manager"><a href="#downloading-virtual-machine-manager">Downloading Virtual Machine Manager</a></h2>
-<h3 id="via-git"><a href="#via-git">Via git</a></h3>
+<h2 id="downloading-virtual-machine-manager">Downloading Virtual Machine Manager</h2>
+<h3 id="via-git">Via git</h3>
 <ul>
 <li>Download git code</li>
 </ul>
 <p><code>git clone git://github.com/tis-innovation-park/vmm.git</code></p>
-<h3 id="via-a-dist-file-.tar.gz"><a href="#via-a-dist-file-.tar.gz">Via a dist file (.tar.gz)</a></h3>
+<h3 id="via-a-dist-file-.tar.gz">Via a dist file (.tar.gz)</h3>
 <p>Coming later</p>
-<h2 id="building-and-installing-virtual-machine-manager"><a href="#building-and-installing-virtual-machine-manager">Building and installing Virtual Machine Manager</a></h2>
+<h2 id="building-and-installing-virtual-machine-manager">Building and installing Virtual Machine Manager</h2>
 <ul>
 <li>Go to the vmm directory</li>
 </ul>
@@ -211,23 +211,23 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p><code>emacs ~/.testingmachine/tm-vmm.conf</code></p>
 <p>In this file you can configure settings you want to use as default in your clients. It is perfectly possible to override these settings in your individual client configurations.</p>
 <p>For a list of variables, see section Configuration syntax below.</p>
-<h2 id="creating-a-machine"><a href="#creating-a-machine">Creating a machine</a></h2>
+<h2 id="creating-a-machine">Creating a machine</h2>
 <p>To create a machine vmm relies on the virtualization software. So if you want to manage a Virtualbox machine you (at least for now) create it with Virtualbox. For information about how to do this, read the chapter “Creating a Virtualbox machine” or “Creating an Android Virtual Device”.</p>
-<h2 id="preparing-for-creating-a-client"><a href="#preparing-for-creating-a-client">Preparing for creating a client</a></h2>
+<h2 id="preparing-for-creating-a-client">Preparing for creating a client</h2>
 <p>First of all you need to decide what machine you want to use with your client.</p>
 <ul>
 <li>Create a directory for all clients:</li>
 </ul>
 <p><code>mkdir ~/.testingmachine/clients</code></p>
-<h2 id="create-a-virtualbox-client"><a href="#create-a-virtualbox-client">Create a VirtualBox client</a></h2>
+<h2 id="create-a-virtualbox-client">Create a VirtualBox client</h2>
 <p>In the example below we will assume it is called Debian-6.0</p>
-<h3 id="create-a-client-configuration-file"><a href="#create-a-client-configuration-file">Create a client configuration file</a></h3>
+<h3 id="create-a-client-configuration-file">Create a client configuration file</h3>
 <p>You can create client configuration in two different ways:</p>
 <ul>
 <li>Manually</li>
 <li>Automatically</li>
 </ul>
-<h4 id="create-a-configuration-file-manually"><a href="#create-a-configuration-file-manually">Create a configuration file manually</a></h4>
+<h4 id="create-a-configuration-file-manually">Create a configuration file manually</h4>
 <ul>
 <li><p>Manually create a configuration file for the client (bound to a virtual machine):</p>
 <p>[CLIENT_NAME].conf</p>
@@ -235,7 +235,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>Set the variables as you find suitable for your project.</li>
 </ul></li>
 </ul>
-<h4 id="create-a-configuration-file-automatically"><a href="#create-a-configuration-file-automatically">Create a configuration file automatically</a></h4>
+<h4 id="create-a-configuration-file-automatically">Create a configuration file automatically</h4>
 <ul>
 <li><p>Use the command line option:</p>
 <p><code>--create-client-conf</code></p></li>
@@ -244,7 +244,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <pre><code>`tm-vmm --create-client-conf  Debian-6.0`</code></pre>
 <p>It is assumed that Debian-6.0 is a VirtualBox image.</p>
 <p><strong>Note:</strong> <code>--create-client-conf</code> will set the default value for the guest username to `whoami`. If your virtual machine uses some other username, you should modify the client configuration after running this command.</p>
-<h3 id="example-of-a-client-configuration"><a href="#example-of-a-client-configuration">Example of a client configuration:</a></h3>
+<h3 id="example-of-a-client-configuration">Example of a client configuration:</h3>
 <p><code>VM_NAME=Debian6.0</code></p>
 <p><code>VM_TYPE=&quot;VirtualBox&quot;</code></p>
 <p><code>VM_IP_ADDRESS=192.168.1.2</code></p>
@@ -257,15 +257,15 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>Copy your public ssh key to the machine’s root account, e.g</li>
 </ul>
 <p><code>ssh-copy-id -p 2256</code></p>
-<h2 id="create-an-android-client"><a href="#create-an-android-client">Create an Android client</a></h2>
+<h2 id="create-an-android-client">Create an Android client</h2>
 <p>In the example below we will assume it is called Nexus-10</p>
-<h3 id="create-a-client-configuration-file-1"><a href="#create-a-client-configuration-file-1">Create a client configuration file</a></h3>
+<h3 id="create-a-client-configuration-file-1">Create a client configuration file</h3>
 <p>You can create client configuration in two different ways:</p>
 <ul>
 <li>Manually</li>
 <li>Automatically</li>
 </ul>
-<h4 id="create-a-configuration-file-manually-1"><a href="#create-a-configuration-file-manually-1">Create a configuration file manually</a></h4>
+<h4 id="create-a-configuration-file-manually-1">Create a configuration file manually</h4>
 <ul>
 <li><p>Manually create a configuration file for the client (bound to a virtual machine):</p>
 <p>[CLIENT_NAME].conf</p>
@@ -273,7 +273,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>Set the variables as you find suitable for your project.</li>
 </ul></li>
 </ul>
-<h4 id="create-a-configuration-file-automatically-1"><a href="#create-a-configuration-file-automatically-1">Create a configuration file automatically</a></h4>
+<h4 id="create-a-configuration-file-automatically-1">Create a configuration file automatically</h4>
 <ul>
 <li><p>Use the command line option:</p>
 <p><code>--create-client-conf</code></p></li>
@@ -282,55 +282,55 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <pre><code>`tm-vmm --create-client-conf  Nexus-10`</code></pre>
 <p>It is assumed that Debian-6.0 and Nexus-10 is the name either a VirtualBox or Android image.</p>
 <p><strong>Note:</strong> <code>--create-client-conf</code> will set the default value for the guest username to `whoami`. If your virtual machine uses some other username, you should modify the client configuration after running this command.</p>
-<h3 id="example-of-a-client-configuration-1"><a href="#example-of-a-client-configuration-1">Example of a client configuration:</a></h3>
+<h3 id="example-of-a-client-configuration-1">Example of a client configuration:</h3>
 <p><code>VM_NAME=&quot;eGov-android-machine&quot;</code></p>
 <p><code>VM_TYPE=&quot;Android&quot;</code></p>
 <p><code>ANDROID_SYS=emulator64-arm</code></p>
 <p>For more variables see section Configuration syntax below</p>
-<h1 id="using-virtual-machine-manager"><a href="#using-virtual-machine-manager">Using Virtual Machine Manager</a></h1>
+<h1 id="using-virtual-machine-manager">Using Virtual Machine Manager</h1>
 <p>Regardless of the underlying virtual machine you manage the machine in one way. We provide the most basic uses of tm-vmm here and encourage you to read the complete list of command line options in the last section of the manual.</p>
-<h2 id="starting"><a href="#starting">Starting</a></h2>
-<h3 id="starting-with-guest-operating-system-visible"><a href="#starting-with-guest-operating-system-visible">Starting with guest operating system visible</a></h3>
+<h2 id="starting">Starting</h2>
+<h3 id="starting-with-guest-operating-system-visible">Starting with guest operating system visible</h3>
 <p><code>tm-vmm --start-client &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --start-client Ubuntu-10</code></p>
-<h3 id="starting-without-showing-guest-operating-system-headless"><a href="#starting-without-showing-guest-operating-system-headless">Starting without showing guest operating system (headless)</a></h3>
+<h3 id="starting-without-showing-guest-operating-system-headless">Starting without showing guest operating system (headless)</h3>
 <p><code>tm-vmm --start-client-headless &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --start-client-headless Ubuntu-10</code></p>
-<h2 id="checking-status"><a href="#checking-status">Checking status</a></h2>
+<h2 id="checking-status">Checking status</h2>
 <p><code>tm-vmm --check-client-status &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --check-client-status Ubuntu-10</code></p>
-<h2 id="stopping"><a href="#stopping">Stopping</a></h2>
+<h2 id="stopping">Stopping</h2>
 <p><code>tm-vmm --stop-client &lt;CLIENT_NAME&gt;</code></p>
 <p>Example:</p>
 <p><code>tm-vmm --stop-client Ubuntu-10</code></p>
-<h1 id="selenium"><a href="#selenium">Selenium</a></h1>
-<h2 id="about-selenium"><a href="#about-selenium">About Selenium</a></h2>
+<h1 id="selenium">Selenium</h1>
+<h2 id="about-selenium">About Selenium</h2>
 <p><em>Selenium is a portable software testing framework for web applications. Selenium provides a record/playback tool for authoring tests without learning a test scripting language (Selenium IDE). It also provides a test domain-specific language (Selenese) [1] to write tests in a number of popular programming languages, including Java, C#, Groovy, Perl, PHP, Python and Ruby. The tests can then be run against most modern web browsers. Selenium deploys on Windows, Linux, and Macintosh platforms.</em></p>
 <p>This text is quoted from: http://en.wikipedia.org/wiki/Selenium_(software)</p>
 <p>Selenium is run on the guest so some tweaks are needed to get things working, but don’t worry we’ve done almost everything for you.</p>
-<h2 id="writing-selenium-tests"><a href="#writing-selenium-tests">Writing Selenium tests</a></h2>
-<h1 id="miscallaneous-other-softwares"><a href="#miscallaneous-other-softwares">Miscallaneous other softwares</a></h1>
-<h2 id="sikuli"><a href="#sikuli">Sikuli</a></h2>
+<h2 id="writing-selenium-tests">Writing Selenium tests</h2>
+<h1 id="miscallaneous-other-softwares">Miscallaneous other softwares</h1>
+<h2 id="sikuli">Sikuli</h2>
 <p>Installing Java is a prerequisite for running Sikuli. Install it with apt-get:</p>
 <p><code>sudo apt-get install openjdk-6-jdk</code></p>
 <p>The software can be installed on Ubuntu 12.04 LTS with the following command:</p>
 <p><code>sudo apt-get install sikuli</code></p>
-<h2 id="gnu-xnee"><a href="#gnu-xnee">GNU Xnee</a></h2>
-<h2 id="wmctrl"><a href="#wmctrl">wmctrl</a></h2>
+<h2 id="gnu-xnee">GNU Xnee</h2>
+<h2 id="wmctrl">wmctrl</h2>
 <p>The package “wmctrl” is used to resize windows.</p>
 <p><code>sudo apt-get install wmctrl</code></p>
-<h1 id="launching-tests-using-vmm"><a href="#launching-tests-using-vmm">Launching tests using vmm</a></h1>
-<h2 id="using-crontab"><a href="#using-crontab">Using crontab</a></h2>
-<h2 id="using-jenkins"><a href="#using-jenkins">Using Jenkins</a></h2>
-<h1 id="testing-egov-sites"><a href="#testing-egov-sites">Testing eGov sites</a></h1>
-<h2 id="problems-weve-encountered"><a href="#problems-weve-encountered">Problems we’ve encountered</a></h2>
-<h3 id="logging-in-to-a-web-site-using-a-smart-card"><a href="#logging-in-to-a-web-site-using-a-smart-card">Logging in to a web site using a smart card</a></h3>
+<h1 id="launching-tests-using-vmm">Launching tests using vmm</h1>
+<h2 id="using-crontab">Using crontab</h2>
+<h2 id="using-jenkins">Using Jenkins</h2>
+<h1 id="testing-egov-sites">Testing eGov sites</h1>
+<h2 id="problems-weve-encountered">Problems we’ve encountered</h2>
+<h3 id="logging-in-to-a-web-site-using-a-smart-card">Logging in to a web site using a smart card</h3>
 <p>When setting up the Testingmachine in South Tyrol to test the <em>burger card</em> the biggest obstacle we had to overcome was the login process. Since this is done using a smart card and a pin we found no way to do this using Selenium and so Sikuli was used. Once logged in, Selenium can be used to test the web services.</p>
 <p>Getting Sikuli to perform an automatic login can be done in the following way:</p>
-<h2 id="sikuli-1"><a href="#sikuli-1">Sikuli</a></h2>
+<h2 id="sikuli-1">Sikuli</h2>
 <p>In order to use Sikuli a test case has to be made. This is done within Sikuli to emulate the login process step by step. A possible test case could look like this:</p>
 <pre class="sourceCode python"><code class="sourceCode python">wait(<span class="st">&quot;KJ2.png&quot;</span>,<span class="dv">60</span>)
 click(<span class="st">&quot;1352889207953.png&quot;</span>)
@@ -346,15 +346,15 @@ click(<span class="st">&quot;1352890307684.png&quot;</span>)
 sleep(<span class="dv">2</span>)
 wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</span>)</code></pre>
 <p>The .png files are created with Sikuli. When running Sikuli you can take ‘snapshots’ of certain parts of the screen that are captured and later used as a reference point where to perform certain functions like emulating button presses or entering text. Sikuli then ‘looks’ for parts of the screen that matches the ‘snapshots’ before it performs actions. This works well with web pages since Sikuli can wait until a page has loaded before executing a command.</p>
-<p><strong>Note:</strong> *We’ve also written some words on how to setup smart cards. See *</p>
-<h1 id="creating-virtual-machines"><a href="#creating-virtual-machines">Creating virtual machines</a></h1>
-<h2 id="creating-a-virtualbox-machine-with-ubuntu-12.10"><a href="#creating-a-virtualbox-machine-with-ubuntu-12.10">Creating a VirtualBox machine with Ubuntu 12.10</a></h2>
+<p><strong>Note:</strong> <em>We’ve also written some words on how to setup smart cards. See </em></p>
+<h1 id="creating-virtual-machines">Creating virtual machines</h1>
+<h2 id="creating-a-virtualbox-machine-with-ubuntu-12.10">Creating a VirtualBox machine with Ubuntu 12.10</h2>
 <p>Basically you should follow the normal procedure, as described in the VirtualBox manual, on how to create a new virtual machine. However we provide a guide below to make this easier. You can choose to use our settings or change some at your will.</p>
 <p><strong>Note:</strong> <em>If you’re on a Ubuntu system you might have to add your user to the vboxusers group. This can done like this: <code>sudo adduser `whoami` vboxusers</code>.</em></p>
-<h3 id="start-virtualbox"><a href="#start-virtualbox">Start Virtualbox</a></h3>
+<h3 id="start-virtualbox">Start Virtualbox</h3>
 <p>In a terminal, type: <code>virtualbox</code></p>
 <p>In the VM Virtualbox Manager window click “New”</p>
-<h3 id="name-and-operating-system"><a href="#name-and-operating-system">Name and operating system</a></h3>
+<h3 id="name-and-operating-system">Name and operating system</h3>
 <ul>
 <li>Name: eGov testing machine</li>
 <li>Type: Linux</li>
@@ -363,35 +363,35 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <div class="figure">
 <img src="screenshots/vbox-name-and-operating-system.png" title="Name and operating system" alt="Name and os" /><p class="caption">Name and os</p>
 </div>
-<h3 id="memory-size"><a href="#memory-size">Memory size</a></h3>
+<h3 id="memory-size">Memory size</h3>
 <ul>
 <li>2048 MB</li>
 </ul>
 <div class="figure">
 <img src="screenshots/vbox-memory-size.png" alt="Memory size" /><p class="caption">Memory size</p>
 </div>
-<h3 id="hard-drive"><a href="#hard-drive">Hard drive</a></h3>
+<h3 id="hard-drive">Hard drive</h3>
 <ul>
 <li>Choose to create a virtual hard drive now</li>
 </ul>
 <div class="figure">
 <img src="screenshots/vbox-hard-drive.png" alt="Hard drive" /><p class="caption">Hard drive</p>
 </div>
-<h3 id="hard-drive-file-type"><a href="#hard-drive-file-type">Hard drive file type</a></h3>
+<h3 id="hard-drive-file-type">Hard drive file type</h3>
 <ul>
 <li>Choose VDI</li>
 </ul>
 <div class="figure">
 <img src="screenshots/vbox-hard-drive-file-type.png" alt="Hard drive file type" /><p class="caption">Hard drive file type</p>
 </div>
-<h3 id="storage-on-physical-hard-drive"><a href="#storage-on-physical-hard-drive">Storage on physical hard drive</a></h3>
+<h3 id="storage-on-physical-hard-drive">Storage on physical hard drive</h3>
 <ul>
 <li>Choose Dynamically allocated</li>
 </ul>
 <div class="figure">
 <img src="screenshots/vbox-storage-on-physical-hard-disk.png" alt="Hard drive file type" /><p class="caption">Hard drive file type</p>
 </div>
-<h3 id="file-location-and-size"><a href="#file-location-and-size">File location and size</a></h3>
+<h3 id="file-location-and-size">File location and size</h3>
 <ul>
 <li>8 GB should be enough</li>
 </ul>
@@ -402,8 +402,8 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <div class="figure">
 <img src="screenshots/vbox-network-1.png" alt="Network" /><p class="caption">Network</p>
 </div>
-<h3 id="network"><a href="#network">Network</a></h3>
-<h4 id="setup-the-network-card"><a href="#setup-the-network-card">Setup the network card</a></h4>
+<h3 id="network">Network</h3>
+<h4 id="setup-the-network-card">Setup the network card</h4>
 <ul>
 <li>Open up the VirtualBox Manager</li>
 <li>Choose your Virtual machine and click Settings</li>
@@ -420,7 +420,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <li><strong>Cable connected</strong>: should be checked</li>
 </ul>
 <p><em>This gives your virtual machine an IP address on the same subnet as the host computer. See http://www.virtualbox.org/manual/ Chapter 6 for additional information on bridged networking.</em></p>
-<h5 id="allowing-ssh-logins-to-your-virtual-machine"><a href="#allowing-ssh-logins-to-your-virtual-machine">Allowing SSH logins to your virtual machine</a></h5>
+<h5 id="allowing-ssh-logins-to-your-virtual-machine">Allowing SSH logins to your virtual machine</h5>
 <p>Open up the VirtualBox Manager</p>
 <p>Choose your Virtual machine and click Settings</p>
 <p>Choose Port forwarding</p>
@@ -436,7 +436,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <div class="figure">
 <img src="screenshots/vbox-network-port-forward.png" alt="Network" /><p class="caption">Network</p>
 </div>
-<h4 id="usb"><a href="#usb">USB</a></h4>
+<h4 id="usb">USB</h4>
 <p>Make sure USB is enabled if you plan to use a smart card reader or another USB device.</p>
 <p>You might encounter an error saying “Failed to access the USB subsystem”. In that case, you probably need to add yourself to the vboxusers group. On Ubuntu, this can done like this: <code>sudo adduser `whoami` vboxusers</code>.</p>
 <p>To use a smart card reader in your virtual machine you have to do the following:</p>
@@ -446,7 +446,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <li>The same procedure applies to other peripherals, like a USB storage device.</li>
 </ul>
 <p>See http://www.virtualbox.org/manual/ Chapter 3 for additional information</p>
-<h3 id="installing-ubuntu"><a href="#installing-ubuntu">Installing Ubuntu</a></h3>
+<h3 id="installing-ubuntu">Installing Ubuntu</h3>
 <p>Download the preferred Ubuntu iso image from ubuntu.com</p>
 <p>Click Settings and choose storage.</p>
 <p>Add the downloaded iso image to the virtual machine as a CD-ROM by clicking the Empty icon (image missing) under Controller: IDE and then click on the disc icon right of the text CD/DVD Drive: .</p>
@@ -459,7 +459,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 </div>
 <p>Click Start</p>
 <p>Follow the installation instructions to install Ubuntu in your new virtual machine.</p>
-<h4 id="upgrading-your-installation"><a href="#upgrading-your-installation">Upgrading your installation</a></h4>
+<h4 id="upgrading-your-installation">Upgrading your installation</h4>
 <p>To upgrade your system you need to:</p>
 <ul>
 <li>Click on the Software updater icon to your left (it may take up to a few minutes before the icon appears)</li>
@@ -468,16 +468,16 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 </ul>
 <p><em>Note:</em> If the Software Updater icon is not available in the sidebar, you can press the “Win/Super” key and type “Software Updater” to start it.</p>
 <p>Ubuntu might require a restart when the update process is finished.</p>
-<h4 id="installing-necessary-tools-in-your-virtual-machine"><a href="#installing-necessary-tools-in-your-virtual-machine">Installing necessary tools in your virtual machine</a></h4>
+<h4 id="installing-necessary-tools-in-your-virtual-machine">Installing necessary tools in your virtual machine</h4>
 <p>The following tools need to be installed on your virtual machine</p>
 <ul>
 <li>openssh-server</li>
 </ul>
 <p>Install them by typing the following command in a terminal window, assuming you’re logged in as your first user (created during the Ubuntu installation):</p>
 <p>sudo apt-get install openssh-server</p>
-<h4 id="setting-up-users-on-the-virtual-machine"><a href="#setting-up-users-on-the-virtual-machine">Setting up users on the virtual machine</a></h4>
+<h4 id="setting-up-users-on-the-virtual-machine">Setting up users on the virtual machine</h4>
 <p>Log in to your virtual machine as the user you created during installation.</p>
-<h5 id="setting-up-a-new-user"><a href="#setting-up-a-new-user">Setting up a new user</a></h5>
+<h5 id="setting-up-a-new-user">Setting up a new user</h5>
 <p>vmm puts no restrictions or requirements on the name of the user in your virtual machine. The user name “vmm” is given here as an example and will be used in all manual text below.</p>
 <p>Log in as the user you created during the Ubuntu installation.</p>
 <p>Open up a user management tool by pressing the dasher (logo missing) and type user accounts.</p>
@@ -489,7 +489,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <ul>
 <li>Click on Enable password and type in a password.</li>
 </ul>
-<h5 id="setting-up-the-root-account"><a href="#setting-up-the-root-account">Setting up the root account</a></h5>
+<h5 id="setting-up-the-root-account">Setting up the root account</h5>
 <ul>
 <li>Permit root to login via the ssh server.</li>
 <li>Launch a terminal window</li>
@@ -522,15 +522,15 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 </ul>
 <p><code>ssh -p 2256 root@localhost whoami</code></p>
 <p>We assume here that you’re using port 2256 for ssh and that your user is called vmm. Change it accordingly if not. <strong>Note</strong>: Make sure that your port (-p 2256) and host arguments (vmm@localhost) are enclosed between the same parenthesises.</p>
-<h2 id="creating-a-android-virtual-device"><a href="#creating-a-android-virtual-device">Creating a Android Virtual Device</a></h2>
+<h2 id="creating-a-android-virtual-device">Creating a Android Virtual Device</h2>
 <p>Basically you should follow the normal procedure, as described on the Android Developer pages manual: http://developer.android.com/tools/devices/index.html.</p>
 <p>We do, however, provide a guide below to make this easier. You can choose to use our settings or change some at your will. In this guide we will setup a Nexus 7 device.</p>
-<h3 id="start-android-virtual-device-manager"><a href="#start-android-virtual-device-manager">Start Android Virtual Device Manager</a></h3>
+<h3 id="start-android-virtual-device-manager">Start Android Virtual Device Manager</h3>
 <p>First, you need to make sure that the ANDROID and ANDROID_ADT_PATH environment variables are set, so that vmm can find the Android application utilities.</p>
 <p>In a terminal, type:</p>
 <p><code>android avd</code></p>
 <p>In the Android Virtual Device Manager window click “New”</p>
-<h3 id="create-new-android-virtual-device-avd"><a href="#create-new-android-virtual-device-avd">Create new Android Virtual Device (AVD)</a></h3>
+<h3 id="create-new-android-virtual-device-avd">Create new Android Virtual Device (AVD)</h3>
 <ul>
 <li>Name: eGov-android-machine</li>
 <li>Device: Nexus 7</li>
@@ -540,36 +540,36 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <div class="figure">
 <img src="screenshots/android-create-new.png" title="Name and operating system" alt="Create new Android Virtual Device" /><p class="caption">Create new Android Virtual Device</p>
 </div>
-<h1 id="example-use"><a href="#example-use">Example use:</a></h1>
+<h1 id="example-use">Example use:</h1>
 <p>/opt/bin/tm-vmm –check-client-status Ubuntu-12.10</p>
 <p>/opt/bin/tm-vmm –check-client-status Ubuntu-12.10</p>
 <p>/opt/bin/tm-vmm –check-client-ssh Ubuntu-12.10</p>
 <p>/opt/bin/tm-vmm –client-exec Ubuntu-12.10 “pkcs15-tool -L”</p>
-<h1 id="project-communication"><a href="#project-communication">Project Communication</a></h1>
-<h2 id="reporting-bugs"><a href="#reporting-bugs">Reporting bugs</a></h2>
+<h1 id="project-communication">Project Communication</h1>
+<h2 id="reporting-bugs">Reporting bugs</h2>
 <p>Try to be as precise as possible when reporting bugs. The more information we get the bigger chance we have of fixing the problem.</p>
 <p>Use the mailing list below to report bugs.</p>
-<h2 id="getting-involved"><a href="#getting-involved">Getting involved</a></h2>
+<h2 id="getting-involved">Getting involved</h2>
 <p><em>How to join:</em> clone the repo, try it out – join the mailing list :)</p>
 <p>For more information read the developer guidelines.</p>
-<h2 id="mailing-list"><a href="#mailing-list">Mailing list</a></h2>
+<h2 id="mailing-list">Mailing list</h2>
 <p>We have one mailing list for the project: <code>community@testingmachine.eu</code></p>
 <p>Join this list here: <code>https://lists.testingmachine.eu/cgi-bin/mailman/listinfo/community</code></p>
 <p>If you send emails to this list as a non subscriber chances are it will get lost.</p>
 <p>If you want to report a bug: * use a github account and add an issue * subscribe to the mailing and send the report to the list</p>
-<h2 id="blog"><a href="#blog">Blog</a></h2>
+<h2 id="blog">Blog</h2>
 <p>https://testingmachine.eu/blog</p>
-<h2 id="home-page"><a href="#home-page">Home page</a></h2>
+<h2 id="home-page">Home page</h2>
 <p>https://testingmachine.eu/</p>
 <p>Source code is located here: <code>https://github.com/tis-innovation-park/vmm</code></p>
-<h2 id="social-media"><a href="#social-media">Social media</a></h2>
-<h3 id="twitter"><a href="#twitter">Twitter</a></h3>
+<h2 id="social-media">Social media</h2>
+<h3 id="twitter">Twitter</h3>
 <p>https://twitter.com/FSCRS</p>
-<h1 id="testing-machine-vmm-configuration"><a href="#testing-machine-vmm-configuration">Testing Machine vmm configuration</a></h1>
-<h2 id="configuration-file-syntax"><a href="#configuration-file-syntax">Configuration file syntax</a></h2>
+<h1 id="testing-machine-vmm-configuration">Testing Machine vmm configuration</h1>
+<h2 id="configuration-file-syntax">Configuration file syntax</h2>
 <p>The syntax for setting a variable is the same as in bash scrips (no coincidence!). Basically you write:</p>
 <p><code>VARIABLE=VALUE</code></p>
-<h3 id="variables"><a href="#variables">Variables</a></h3>
+<h3 id="variables">Variables</h3>
 <p><code>LOG_FILE_DIR=/tmp/tm-vmm/log</code> - sets the log file base directory to /tmp/vmm/log. This means that all logs can be found here.</p>
 <p><code>VM_STARTUP_TIMEOUT=10</code> - the time to wait for a virtual machine to start up before considering it to be ‘dead’.</p>
 <p><code>VM_STOP_TIMEOUT=20</code> - the time to wait for a virtual machine to start up before taking more drastic actions to take down the machine. Ultimately vmm will take down a machine with a <code>kill</code>.</p>
@@ -585,8 +585,8 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <p><code>ANDROID_ADT_PATH=/opt/adt-bundle-linux-x86_64-20130219</code> - Path to Android SDK installation. vmm will use this to find the commands adb and android.</p>
 <p><code>ANDROID=~/example/bin/android</code> - Specify the android command. This overrides the android command as found using the environment variable ANDROID_ADT_PATH.</p>
 <p><code>ADB=~/example/bin/adb</code> - Specify the adb command. This overrides the android command as found using the environment variable ANDROID_ADT_PATH.</p>
-<h1 id="tm-vmm-command-line-options"><a href="#tm-vmm-command-line-options">tm-vmm Command line options</a></h1>
-<h2 id="client-options"><a href="#client-options">Client options</a></h2>
+<h1 id="tm-vmm-command-line-options">tm-vmm Command line options</h1>
+<h2 id="client-options">Client options</h2>
 <p><code>--list-clients</code> - Lists all configured clients</p>
 <p><code>--start-client CLIENT_NAME</code> - Starts the client called CLIENT_NAME</p>
 <p><code>--start-client-headless CLIENT_NAME</code> - Starts the client called CLIENT_NAME as headless (no screen)</p>
@@ -616,7 +616,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <p><code>--print-client-settings CLIENT_NAME</code> - Prints the path to the client’s configuration</p>
 <p><code>--get-client-os CLIENT_NAME</code> - Displays the operating system of the client called CLIENT_NAME</p>
 <p><code>--for-clients-run SCRIPT [CLIENT_NAMES]</code> - For each client, starts it, run the script, and stop it. CLIENT_NAMES is a semi-colon-seprated list of client names. If CLIENT_NAMES is left out, all clients will be used. The following variables will be set in the script: CLIENT_NAME, CLIENT_TYPE (“vbox” or “android”), CLIENT_STARTED (0 means yes), CLIENT_UP (0 means yes), and CLIENT_SSH_UP (0 means yes).</p>
-<h2 id="machine-options"><a href="#machine-options">Machine options</a></h2>
+<h2 id="machine-options">Machine options</h2>
 <p><code>--list-machines</code> - Lists all machines known to vmm</p>
 <p><code>--start-machine MACHINE_NAME</code> - Starts machine named MACHINE</p>
 <p><code>--start-machine-headless MACHINE_NAME</code> - Starts machine called VM_NAME as headless (no screen)</p>
@@ -625,7 +625,7 @@ wait(<span class="st">&quot;Tl2fIlHlKJlI.png&quot;</span>,<span class="dv">60</s
 <p><code>--list-running-machines</code> - Lists all machines currently running</p>
 <p><code>--pause-machine MACHINE_NAME</code> - Pauses the running virtual machine</p>
 <p><code>--resume-machine MACHINE_NAME</code> - Resumes the paused virtual machine</p>
-<h2 id="other"><a href="#other">Other</a></h2>
+<h2 id="other">Other</h2>
 <p><code>--version</code> - Checks the current version of the tm-vmm</p>
 <p><code>--import-appliance APPLIANCE</code> - Imports an OVA file into VirtualBox (OVF, Open Virtualization Format, is a cross-platform standard for packaging ready-made virtual machines that can be imported to virtualizers, while OVA is the name of a tar archive file with the OVF directory inside)</p>
 </body>

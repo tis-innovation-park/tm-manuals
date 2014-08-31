@@ -305,8 +305,7 @@ distributions:
 
 ### Debian based GNU/Linux distributions
 
-`sudo apt-get install`
-`sudo apt-get pandoc texlive-latex-base`
+`sudo apt-get install pandoc texlive-latex-base`
 
 # Releasing the software
 
